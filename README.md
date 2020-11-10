@@ -13,7 +13,7 @@ Welcome to the IBM BR CIC Full Stack Coding Challenge.  The coding challenge is 
 6. Create an [IBM Cloud Account](https://cloud.ibm.com) 
 7. Create an [IBM GitHub Account](https://github.ibm.com/) 
 8. If you are not familiar with Git commands, feel free to find an online training tutorial or enroll in the [Udemy Course - Git for Geeks](https://ibm-learning.udemy.com/course/git-for-geeks/).
-9. **Fork** the Git repository to make a copy in your repository.
+9. **Fork** the Git repository to make a copy in your repository
 
 # Project Information
 
