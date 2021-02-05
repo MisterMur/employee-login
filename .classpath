@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="api-gateway/.mvn/wrapper"/>
+	<classpathentry kind="src" path="api-gateway/src/main/java"/>
+	<classpathentry kind="src" path="api-gateway/src/test/java"/>
+	<classpathentry kind="src" path="discovery-service/.mvn/wrapper"/>
+	<classpathentry kind="src" path="discovery-service/src/main/java"/>
+	<classpathentry kind="src" path="discovery-service/src/test/java"/>
+	<classpathentry kind="src" path="employee-service/.mvn/wrapper"/>
+	<classpathentry kind="src" path="employee-service/src/main/java"/>
+	<classpathentry kind="src" path="employee-service/src/test/java"/>
+	<classpathentry kind="src" path="login-service/.mvn/wrapper"/>
+	<classpathentry kind="src" path="login-service/src/main/java"/>
+	<classpathentry kind="src" path="login-service/src/test/java"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
