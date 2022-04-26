@@ -4,5 +4,5 @@ CREATE TABLE login (
     password Varchar(50) NOT NULL
 );
 
--- INSERT INTO login (id, email, password)
--- VALUES (UUID(),'hi@me.com','1234');
+INSERT INTO login (id, email, password)
+VALUES (1,'hi@me.com','1234');

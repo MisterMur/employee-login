@@ -1,26 +1,58 @@
-version: '3.0'
+version: "3.0"
+networks:
+  backend:
+    driver: bridge
 services:
   login-db:
-      build:
-        dockerfile: Dockerfile
-        context: "./login_db_docker_image"
-      ports:
-        - "3306:3306"
-      volumes:
-        - login-DB:/var/lib/mysql
-      cap_add:
-      - SYS_NICE  # CAP_SYS_NICE
+    build:
+      dockerfile: Dockerfile
+      context: "./login_db_docker_image"
+    networks:
+      - backend
+    ports:
+      - "3306:3306"
+    # volumes:
+    #   - login-DB:/var/lib/mysql
+    # cap_add:
+    #   - SYS_NICE # CAP_SYS_NICE
   employee-db:
-      build:
-        dockerfile: Dockerfile
-        context: "./employee_db_docker_image"
-      ports:
-        - "3308:3306"
-      volumes:
-        - employeeDB:/var/lib/mysql
-      cap_add:
-      - SYS_NICE  # CAP_SYS_NICE
+    build:
+      dockerfile: Dockerfile
+      context: "./employee_db_docker_image"
+    networks:
+      - backend
+    ports:
+      - "3308:3306"
+    # volumes:
+    #   - employee-DB:/var/lib/mysql
+    # cap_add:
+    #   - SYS_NICE # CAP_SYS_NICE
+
+  login-ws:
+    build:
+      dockerfile: Dockerfile
+      context: "./login-service"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - login-db
+    restart: on-failure
+    networks:
+      - backend
+
+  #   env_file:
+  #     - login-service.env
+  # employee-ws:
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: "./employee-service"
+  #   ports:
+  #     - "8082:8082"
+  #   depends_on:
+  #     - employee-db
+  #   restart: on-failure
+  #   networks:
+  #     - backend
 volumes:
-  employeeDB:
+  employee-DB:
   login-DB:
-      
