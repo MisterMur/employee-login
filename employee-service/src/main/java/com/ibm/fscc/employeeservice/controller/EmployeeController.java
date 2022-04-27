@@ -26,15 +26,20 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping //(path = "/employee")
+@RequestMapping(path = "/employee")
 public class EmployeeController {
-	@Autowired 
-	EmployeeEntity employee;
-
-	@Autowired
-	private Environment env;
-	
 	@Autowired EmployeeRepository employeeRepository;
+	
+//	@Autowired 
+//	EmployeeEntity employee;
+	
+	@RequestMapping(value = "/employees", method = RequestMethod.GET)
+	public List<EmployeeEntity> getEmployees() {
+
+		return employeeRepository.findAll();
+
+	}
+
 	
 	@PostMapping
 	public String test()
@@ -47,22 +52,24 @@ public class EmployeeController {
 		}
 		
 	}
-	public static class UserInfo {
-		private String user_id;
-
-		public String getUserId() {
-			return user_id;
-		}
-
-		public void setUserId(String user_id) {
-			this.user_id = user_id;
-		}
-	}
+	@Autowired
+	private Environment env;
 
 	@GetMapping(path = "/status/check")
 	public String status() {
 		return "Working on port " + env.getProperty("server.port") + "!";
 	}
+//	public static class UserInfo {
+//		private String user_id;
+//
+//		public String getUserId() {
+//			return user_id;
+//		}
+//
+//		public void setUserId(String user_id) {
+//			this.user_id = user_id;
+//		}
+//	}
 
 	// @RequestMapping(method = RequestMethod.GET)
 	// public List<EmployeeEntity> findAll(){

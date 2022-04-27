@@ -2,9 +2,11 @@ package com.ibm.fscc.loginservice.data;
 
 import javax.persistence.Entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,15 +16,26 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="users")
 public class LoginEntity {
 
-	@Id @GeneratedValue(generator="UUID")
-	@GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-	@Column(name="id", updatable=false, nullable=false)
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String email; // primary key
 	private String password; // encrypted
+	
+	public LoginEntity() {
+		super();
+	}
+	public LoginEntity(String email,String password) {
+		this();
+		this.email = email;
+		this.password = password;
+	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getEmail() {
 		return email;
@@ -35,6 +48,7 @@ public class LoginEntity {
 	public String getPassword() {
 		return password;
 	}
+	
 
 	public void setPassword(String password) {
 		this.password = password;

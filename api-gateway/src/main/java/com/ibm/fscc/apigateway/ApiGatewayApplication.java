@@ -1,8 +1,12 @@
 package com.ibm.fscc.apigateway;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@EnableZuulProxy
 @SpringBootApplication
 public class ApiGatewayApplication {
 

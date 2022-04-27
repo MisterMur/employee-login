@@ -11,10 +11,9 @@ services:
       - backend
     ports:
       - "3306:3306"
-    # volumes:
-    #   - login-DB:/var/lib/mysql
-    # cap_add:
-    #   - SYS_NICE # CAP_SYS_NICE
+    volumes:
+      - login-DB:/var/lib/mysql
+
   employee-db:
     build:
       dockerfile: Dockerfile
@@ -23,36 +22,56 @@ services:
       - backend
     ports:
       - "3308:3306"
-    # volumes:
-    #   - employee-DB:/var/lib/mysql
-    # cap_add:
-    #   - SYS_NICE # CAP_SYS_NICE
+    volumes:
+      - employee-DB:/var/lib/mysql
 
-  login-ws:
+  # login-ws:
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: "./login-service"
+  #   ports:
+  #     - "8081:8081"
+  #   depends_on:
+  #     - login-db
+  #     - discovery
+  #   restart: on-failure
+  #   networks:
+  #     - backend
+
+  employee-ws:
     build:
       dockerfile: Dockerfile
-      context: "./login-service"
+      context: "./employee-service"
     ports:
-      - "8081:8081"
+      - "8082:8082"
     depends_on:
-      - login-db
+      - employee-db
+      - discovery
     restart: on-failure
     networks:
       - backend
 
-  #   env_file:
-  #     - login-service.env
-  # employee-ws:
-  #   build:
-  #     dockerfile: Dockerfile
-  #     context: "./employee-service"
-  #   ports:
-  #     - "8082:8082"
-  #   depends_on:
-  #     - employee-db
-  #   restart: on-failure
-  #   networks:
-  #     - backend
+  discovery:
+    build:
+      dockerfile: Dockerfile
+      context: "./discovery-service"
+    ports:
+      - "8761:8761"
+    restart: on-failure
+    networks:
+      - backend
+  gateway:
+    container_name: gateway
+    build:
+      dockerfile: Dockerfile
+      context: "./api-gateway"
+    ports:
+      - "8083:8083"
+    depends_on:
+      - discovery
+    restart: on-failure
+    networks:
+      - backend
 volumes:
   employee-DB:
   login-DB:

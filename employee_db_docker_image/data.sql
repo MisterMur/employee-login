@@ -11,3 +11,11 @@ CREATE TABLE employee (
     homePhone Varchar(50) NOT NULL, 
 	email Varchar(50) NOT NULL
 );
+
+
+
+INSERT INTO employee (userId, firstName, lastName, 
+address, state, city, zip, cellPhone, homePhone, email)
+
+VALUES ("744", "TestFirst", "TestLast", 
+"123 Test St.", "La", "Baton Rouge", "11111", "1234567899", "5555555555", "atestemail@email.com");

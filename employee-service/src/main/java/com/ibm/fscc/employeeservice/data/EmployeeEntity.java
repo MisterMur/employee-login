@@ -8,26 +8,38 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 
+//@Table(name = "employees")
+
 @Entity
-@Table(name = "employees")
 public class EmployeeEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id; // primary and generated
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	private String userId; // Generate with UUID and unique
 	private String firstName;
 	private String lastName;
-	@Column(name = "_address")
 	private String address;
 	private String city;
-	@Column(name = "_state")
 	private String state;
 	private String zip;
 	private String cellPhone;
 	private String homePhone;
 	private String email; // Unique
+	
+	public EmployeeEntity() {
+		super();
+	}
+	public EmployeeEntity(
+			String userId,String firstName, String lastName,String email) {
+		this();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+	
+	
 
 	public long getId() {
 		return id;

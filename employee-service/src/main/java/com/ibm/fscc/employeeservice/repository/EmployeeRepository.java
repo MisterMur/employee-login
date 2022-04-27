@@ -6,8 +6,12 @@ import com.ibm.fscc.employeeservice.data.EmployeeEntity;
 
 import java.util.List;
 
+
 public interface EmployeeRepository extends CrudRepository<EmployeeEntity, Long> {
     EmployeeEntity findById(long id);
+    
+    List<EmployeeEntity> findAll();
+
 	
 	List<EmployeeEntity> findAllByUserId(String _user_id);
 	
