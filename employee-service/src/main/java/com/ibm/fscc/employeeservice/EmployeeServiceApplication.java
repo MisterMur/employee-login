@@ -21,23 +21,8 @@ import com.ibm.fscc.employeeservice.repository.EmployeeRepository;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class EmployeeServiceApplication {
-	
-	@Autowired EmployeeRepository employeeRepository;
-	
-	@PostConstruct
-	public void init() {
-	    EmployeeEntity le = new EmployeeEntity("bmurillo","brian","murillo","brian@me.com");
-
-	    employeeRepository.save(le);
-
-	}
-	  public List<EmployeeEntity> getAllEmployees() {
-			List<EmployeeEntity> employees = employeeRepository.findAll();
-			return employees;
-		}
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeServiceApplication.class, args);
 	}
-
 }

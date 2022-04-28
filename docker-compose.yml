@@ -25,18 +25,18 @@ services:
     volumes:
       - employee-DB:/var/lib/mysql
 
-  # login-ws:
-  #   build:
-  #     dockerfile: Dockerfile
-  #     context: "./login-service"
-  #   ports:
-  #     - "8081:8081"
-  #   depends_on:
-  #     - login-db
-  #     - discovery
-  #   restart: on-failure
-  #   networks:
-  #     - backend
+  login-ws:
+    build:
+      dockerfile: Dockerfile
+      context: "./login-service"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - login-db
+      - discovery
+    restart: on-failure
+    networks:
+      - backend
 
   employee-ws:
     build:
@@ -66,7 +66,7 @@ services:
       dockerfile: Dockerfile
       context: "./api-gateway"
     ports:
-      - "8083:8083"
+      - "8080:8080"
     depends_on:
       - discovery
     restart: on-failure

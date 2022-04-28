@@ -13,7 +13,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name="users")
 public class LoginEntity {
 
 	@Id
