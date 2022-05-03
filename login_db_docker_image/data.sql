@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS loginDB ; 
+USE loginDB;
+-- DROP TABLE IF EXISTS employee;
 CREATE TABLE login (
     id int AUTO_INCREMENT PRIMARY KEY,
 	email Varchar(50) NOT NULL UNIQUE, 

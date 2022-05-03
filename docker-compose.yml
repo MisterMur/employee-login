@@ -4,28 +4,30 @@ networks:
     driver: bridge
 services:
   login-db:
+    container_name: mysql
     build:
       dockerfile: Dockerfile
       context: "./login_db_docker_image"
     networks:
       - backend
-    ports:
-      - "3306:3306"
     volumes:
       - login-DB:/var/lib/mysql
 
   employee-db:
+    container_name: postgres
     build:
       dockerfile: Dockerfile
       context: "./employee_db_docker_image"
     networks:
       - backend
     ports:
-      - "3308:3306"
+      - "5432:5432"
     volumes:
-      - employee-DB:/var/lib/mysql
+      - employee-DB:/var/lib/pgdb
 
   login-ws:
+    container_name: login
+    command: mvn clean install -DskipTests
     build:
       dockerfile: Dockerfile
       context: "./login-service"
@@ -39,11 +41,15 @@ services:
       - backend
 
   employee-ws:
+    container_name: employee
+    command: mvn clean install -DskipTests
     build:
       dockerfile: Dockerfile
       context: "./employee-service"
     ports:
       - "8082:8082"
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgres:5432/employeeDB
     depends_on:
       - employee-db
       - discovery
@@ -52,6 +58,7 @@ services:
       - backend
 
   discovery:
+    container_name: eureka
     build:
       dockerfile: Dockerfile
       context: "./discovery-service"
@@ -60,8 +67,9 @@ services:
     restart: on-failure
     networks:
       - backend
+
   gateway:
-    container_name: gateway
+    container_name: zuul
     build:
       dockerfile: Dockerfile
       context: "./api-gateway"

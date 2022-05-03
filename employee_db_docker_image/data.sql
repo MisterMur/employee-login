@@ -1,21 +1,24 @@
+CREATE DATABASE IF NOT EXISTS employeeDB ; 
+USE employeeDB;
 -- DROP TABLE IF EXISTS employee;
+
 CREATE TABLE employee (
-    id int AUTO_INCREMENT PRIMARY KEY,
-    userId Varchar(50) NOT NULL,
-    firstName Varchar(50) NOT NULL,
-    lastName Varchar(50) NOT NULL,
-	address Varchar(50) NOT NULL,
-	state Varchar(50) NOT NULL,
-	zip Varchar(50) NOT NULL,
-	cellPhone Varchar(50) NOT NULL,
-    homePhone Varchar(50) NOT NULL, 
-	email Varchar(50) NOT NULL
+    id SERIAL PRIMARY KEY,
+    email varchar(35) not null unique,
+    userId varchar(50) NOT NULL,
+    firstName varchar(50) NOT NULL,
+    lastName varchar(50) NOT NULL,
+	address varchar(50) NOT NULL,
+	state varchar(50) NOT NULL,
+    city varchar(50) NOT NULL,
+	zip varchar(50) NOT NULL,
+	cellPhone varchar(50) NOT NULL,
+    homePhone varchar(50) NOT NULL
 );
 
 
 
-INSERT INTO employee (userId, firstName, lastName, 
-address, state, city, zip, cellPhone, homePhone, email)
-
-VALUES ("744", "TestFirst", "TestLast", 
-"123 Test St.", "La", "Baton Rouge", "11111", "1234567899", "5555555555", "atestemail@email.com"); 
+INSERT INTO employee (id,email,userId,firstName, lastName, 
+address, state, city, zip, cellPhone, homePhone )
+VALUES ('1','atestemail@email.com', '744','TestFirst', 'TestLast', 
+'123 Test St.', 'La', 'Baton Rouge', '70802', '1234567899', '5555555555'); 
