@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS employeeDB ; 
-USE employeeDB;
+-- CREATE DATABASE IF NOT EXISTS employeeDB ; 
+-- USE employeeDB;
 -- DROP TABLE IF EXISTS employee;
 
 CREATE TABLE employee (

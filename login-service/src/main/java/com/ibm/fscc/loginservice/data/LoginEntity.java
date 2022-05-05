@@ -2,6 +2,7 @@ package com.ibm.fscc.loginservice.data;
 
 import javax.persistence.Entity;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,27 +14,20 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
+@Table(name="login")
 public class LoginEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String email; // primary key
-	private String password; // encrypted
+	private String id;
+	private String email;
+	private String password;
 	
-	public LoginEntity() {
-		super();
-	}
-	public LoginEntity(String email,String password) {
-		this();
-		this.email = email;
-		this.password = password;
-	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getEmail() {
@@ -52,5 +46,6 @@ public class LoginEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 }

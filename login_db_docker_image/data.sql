@@ -1,10 +1,11 @@
-CREATE DATABASE IF NOT EXISTS loginDB ; 
-USE loginDB;
+-- CREATE DATABASE IF NOT EXISTS loginDB ; 
+-- USE loginDB;
 -- DROP TABLE IF EXISTS employee;
 CREATE TABLE login (
-    id int AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(36) not null,
 	email Varchar(50) NOT NULL UNIQUE, 
-    password Varchar(50) NOT NULL
+    password Varchar(50) NOT NULL,
+    PRIMARY KEY(id)
 );
 
 INSERT INTO login (id, email, password)

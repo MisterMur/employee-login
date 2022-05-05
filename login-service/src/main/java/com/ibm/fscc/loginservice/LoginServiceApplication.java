@@ -26,20 +26,8 @@ import com.ibm.fscc.loginservice.repository.LoginRepository;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class LoginServiceApplication {
-	
-//	@Autowired LoginRepository loginRepository;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(LoginServiceApplication.class, args);
 	}
-	
-//	@PostConstruct
-//	public void init() {
-//	    Set<LoginEntity> logins = new HashSet<>();
-//	    LoginEntity le = new LoginEntity("brian@me.com","12345");
-//
-//	    loginRepository.save(le);
-//
-//	}
 
 }
