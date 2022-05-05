@@ -2,7 +2,25 @@ version: "3.0"
 networks:
   backend:
     driver: bridge
+  frontend:
+    driver: bridge
 services:
+  react-portal:
+    container_name: react-portal
+    stdin_open: true
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    build:
+      dockerfile: Dockerfile
+      context: "./react-portal"
+    volumes:
+      - /usr/src/app/node_modules
+      - ./react-portal:/usr/src/app
+    ports:
+      - "3000:3000"
+    networks:
+      - frontend
+
   login-db:
     container_name: mysql
     build:
