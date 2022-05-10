@@ -48,7 +48,17 @@ public class LoginController {
 	
 	@RequestMapping(path="/create", method = RequestMethod.PUT, consumes= {MediaType.APPLICATION_JSON_VALUE})
 	public LoginEntity newUser(@RequestBody LoginEntity user) {
+		System.out.print("PUT create newUser: ");
+		System.out.print(user);
+
 		return loginDetailService.newUser(user);
+	}
+
+	@RequestMapping(path="/register", method = RequestMethod.POST,consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public LoginEntity registerUser(@RequestBody LoginEntity user) {
+		System.out.print("POST register newUser: ");
+		System.out.print(user);
+		return loginDetailService.registerUser(user);
 	}
 	
 

@@ -4,7 +4,7 @@
 CREATE TABLE login (
     id VARCHAR(36) not null,
 	email Varchar(50) NOT NULL UNIQUE, 
-    password Varchar(50) NOT NULL,
+    password Varchar(500) NOT NULL,
     PRIMARY KEY(id)
 );
 

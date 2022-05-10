@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Auth from "../api/Auth";
 import "./loginStyles.scss";
 
@@ -9,6 +11,7 @@ class LoginComponent extends React.Component {
       mode: "login",
     };
   }
+
   toggleMode() {
     var newMode = this.state.mode === "login" ? "signup" : "login";
     this.setState({ mode: newMode });
@@ -18,7 +21,7 @@ class LoginComponent extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="login-screen">
         <div
           className={`form-block-wrapper form-block-wrapper--is-${this.state.mode}`}
         ></div>
@@ -54,28 +57,47 @@ function LoginForm(props) {
     emailRegister: "",
     passwordRegister: "",
   });
+
+  const history = useNavigate();
+
   const { fullname, emailRegister, passwordRegister } = registerData;
   const { email, password } = loginData;
 
   const onLoginTextChange = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: [e.target.value] });
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
   const onRegisterTextChange = (e) => {
-    setRegisterData({ ...registerData, [e.target.name]: [e.target.value] });
+    setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
-  const onLoginSubmit = () => {
+  const onLoginSubmit = (e) => {
+    e.preventDefault();
     // const isValid = this.validateInputs();
 
     // if (!isValid) {
     //   return false;
     // } else {
-    Auth.handleLoginData(this.state.username, this.state.password).then(() => {
-      this.props.history.push("/employees");
+    console.log("in handle login submit");
+    Auth.removeToken();
+    console.log(window.location.href.split("/")[2].split(":")[0] + ":8081");
+    Auth.login(loginData).then(() => {
+      console.log("pushing employee history");
+      history("/employees");
     });
     //   return true;
     // }
   };
-  const onSignupSubmit = () => {};
+  const onSignupSubmit = (e) => {
+    console.log(props.mode);
+    e.preventDefault();
+    console.log("in registration submit");
+    const registrationJson = {
+      email: emailRegister,
+      password: passwordRegister,
+    };
+    Auth.register(registrationJson).then(() => {
+      this.props.history.push("/employees");
+    });
+  };
   return (
     <form onSubmit={props.onSubmit}>
       <div className="form-block__input-wrapper">
@@ -84,6 +106,7 @@ function LoginForm(props) {
             type="text"
             id="email"
             label="email"
+            name="email"
             value={email}
             onChange={onLoginTextChange}
             disabled={props.mode === "signup"}
@@ -92,6 +115,7 @@ function LoginForm(props) {
             type="password"
             id="password"
             label="password"
+            name="password"
             value={password}
             onChange={onLoginTextChange}
             disabled={props.mode === "signup"}
@@ -101,6 +125,7 @@ function LoginForm(props) {
           <Input
             type="text"
             id="fullname"
+            name="fullname"
             label="full name"
             value={fullname}
             onChange={onRegisterTextChange}
@@ -109,6 +134,7 @@ function LoginForm(props) {
           <Input
             type="text"
             id="emailRegister"
+            name="emailRegister"
             label="email"
             value={emailRegister}
             onChange={onRegisterTextChange}
@@ -118,6 +144,7 @@ function LoginForm(props) {
             type="password"
             id="createpasswordRegister"
             label="password"
+            name="passwordRegister"
             value={passwordRegister}
             onChange={onRegisterTextChange}
             disabled={props.mode === "login"}
@@ -126,7 +153,7 @@ function LoginForm(props) {
       </div>
       <button
         className="button button--primary full-width"
-        onClick={"login" ? onLoginSubmit : onSignupSubmit}
+        onClick={props.mode === "login" ? onLoginSubmit : onSignupSubmit}
         type="submit"
       >
         {props.mode === "login" ? "Log In" : "Sign Up"}
@@ -134,11 +161,14 @@ function LoginForm(props) {
     </form>
   );
 }
-const Input = ({ id, type, label, value, onChange, disabled }) => (
+const Input = ({ id, type, label, value, onChange, disabled, name }) => (
   <input
     className="form-group__input"
     type={type}
     id={id}
+    name={name}
+    value={value}
+    onChange={onChange}
     placeholder={label}
     disabled={disabled}
   />

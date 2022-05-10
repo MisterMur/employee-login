@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+@use "carbon-components-react/scss/components/button";
 
 $borderRadius: 1px;
 $offset: 150%;
@@ -32,28 +32,30 @@ $yellow: #ed6a5e;
 html,
 body,
 .container,
-#app {
-  width: 100%;
-  height: 100%;
-}
+// #app {
+//   width: 100%;
+//   height: 100%;
+// }
 
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  color: #fff;
-  margin: 0 !important;
+  // color: #fff;
+  // margin: 0 !important;
 }
 
-.app {
+.login-screen {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 100%;
+  width: 100%;
   overflow-y: scroll;
-  background-image: url("https://unsplash.it/1366/768?image=568");
-  background-repeat: no-repeat;
-  background-size: cover;
+  overflow-x: hidden;
+  // background-image: url("https://unsplash.it/1366/768?image=568");
+  // background-repeat: no-repeat;
+  // background-size: cover;
 }
 
 .form-block-wrapper {

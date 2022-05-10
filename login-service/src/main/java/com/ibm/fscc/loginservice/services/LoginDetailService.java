@@ -32,14 +32,40 @@ public class LoginDetailService {
 		 }
 		 return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
 	}
+public LoginEntity registerUser( LoginEntity user) {
+	System.out.println("in register user logindetail service");
+	System.out.println("user.getEmail: "+ user.getEmail());
+
+	System.out.println("user.getPassword: "+ user.getPassword());
+
+
+	if (user.getEmail() != null && user.getPassword() != null ) {
+		System.out.println("user in body exists, salting password");
+		String hashpwd = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+
+		user.setPassword(hashpwd);
+		return loginRepository.save(user);
+	}
+	System.out.println("coulndt create new user, returning null");
+
+	return null;
+} 
+	   
  
  public LoginEntity newUser( LoginEntity user) {
+
+	 System.out.println("user.getEmail: "+ user.getEmail());
+	System.out.println("user.getPassword: "+ user.getPassword());
+
+	System.out.println("findbyemail: "+loginRepository.findByEmail(user.getEmail() ));
 	 	
-	 	if (user.getEmail() != null && user.getPassword() != null && loginRepository.findByEmail(user.getEmail() ) == null) {
+	 	if (user.getEmail() != null && user.getPassword() != null && loginRepository.findByEmail(user.getEmail() )  != null) {
+			 System.out.println("user exists, salting password");
 	 		String hashpwd = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
 	 		user.setPassword(hashpwd);
 	 		return loginRepository.save(user);
 	 	}
+		 System.out.println("coulndt update new user, returning null");
 	 	return null;
  } 
 	

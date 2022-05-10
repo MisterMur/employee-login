@@ -1,17 +1,33 @@
 let baseUrl = window.location.href.split("/")[2].split(":")[0] + ":8081";
 
-export default class Auth {
+class Auth {
   setToken(token) {
     localStorage.setItem("jwt", token);
   }
   removeToken() {
     localStorage.clear();
   }
-  async handleLoginData(email, password) {
-    const res = await fetch(`${baseUrl}`, {
+  async login(loginData) {
+    console.log(loginData);
+    const res = await fetch("http://localhost:8081/login/submit-login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(loginData),
+    }).then((res) => res);
+    if (res.status === 202) {
+      await res.text().then(this.setToken);
+    } else {
+      alert("Login Error.");
+    }
+  }
+  async register(registerData) {
+    console.log(registerData);
+
+    const res = await fetch("http://localhost:8081/login/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: registerData,
+      mode: "no-cors",
     }).then((res) => res);
     if (res.status === 202) {
       await res.text().then(this.setToken);
@@ -34,3 +50,4 @@ export default class Auth {
     return !(user === null);
   }
 }
+export default new Auth();

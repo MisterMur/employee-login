@@ -18,7 +18,7 @@ CREATE TABLE employee (
 
 
 
-INSERT INTO employee (id,email,userId,firstName, lastName, 
+INSERT INTO employee (userId,email,firstName, lastName, 
 address, state, city, zip, cellPhone, homePhone )
-VALUES ('1','atestemail@email.com', '744','TestFirst', 'TestLast', 
+VALUES ('1','atestemail@email.com','TestFirst', 'TestLast', 
 '123 Test St.', 'La', 'Baton Rouge', '70802', '1234567899', '5555555555'); 

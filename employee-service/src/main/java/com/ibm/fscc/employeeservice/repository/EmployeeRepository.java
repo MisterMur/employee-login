@@ -11,8 +11,6 @@ public interface EmployeeRepository extends CrudRepository<EmployeeEntity, Long>
     
     List<EmployeeEntity> findAll();
 
-	
-	List<EmployeeEntity> findAllByUserId(String _user_id);
-	
+		
 	EmployeeEntity findByEmail(String email);
 }

@@ -12,4 +12,6 @@ public interface LoginRepository extends CrudRepository<LoginEntity, Long> {
 	
 	LoginEntity findByEmail(String email);
 
+    LoginEntity findById(String id);
+
 }
