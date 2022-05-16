@@ -16,9 +16,7 @@ class LoginComponent extends React.Component {
     var newMode = this.state.mode === "login" ? "signup" : "login";
     this.setState({ mode: newMode });
   }
-  onSubmit() {
-    console.log("submit");
-  }
+
   render() {
     return (
       <div className="login-screen">
@@ -41,7 +39,7 @@ class LoginComponent extends React.Component {
               <label htmlFor="form-toggler"></label>
             </div>
           </header>
-          <LoginForm mode={this.state.mode} onSubmit={this.onSubmit} />
+          <LoginForm mode={this.state.mode} />
         </section>
       </div>
     );
@@ -78,9 +76,7 @@ function LoginForm(props) {
     // } else {
     console.log("in handle login submit");
     Auth.removeToken();
-    console.log(window.location.href.split("/")[2].split(":")[0] + ":8081");
     Auth.login(loginData).then(() => {
-      console.log("pushing employee history");
       history("/employees");
     });
     //   return true;

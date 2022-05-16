@@ -8,9 +8,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 
-//@Table(name = "employees")
 
 @Entity
+@Table(name = "employee")
 public class EmployeeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,25 +27,25 @@ public class EmployeeEntity {
 	private String homePhone;
 	private String email; // Unique
 	
-	public EmployeeEntity() {
-		super();
-	}
-	public EmployeeEntity(
-			String userId,String firstName, String lastName,String email) {
-		this();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
+	// public EmployeeEntity() {
+	// 	super();
+	// }
+	// public EmployeeEntity(
+	// 		String userId,String firstName, String lastName,String email) {
+	// 	this();
+	// 	this.userId = userId;
+	// 	this.firstName = firstName;
+	// 	this.lastName = lastName;
+	// 	this.email = email;
+	// }
 	
 	
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

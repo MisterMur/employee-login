@@ -39,7 +39,7 @@ public class EmployeeController {
 	EmployeeDetailService employeeDetailService;
 
 	
-	@RequestMapping(value = "/employees", method = RequestMethod.GET)
+	@RequestMapping(value = "/employees", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<EmployeeEntity> getEmployees() {
 		System.out.println("in get employees ");
 		System.out.println(employeeRepository.findAll());

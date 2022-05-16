@@ -1,47 +1,26 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import EmployeeApi from "../api/EmployeeApi";
+import { useNavigate } from "react-router-dom";
 
 import "./homeStyles.scss";
 
-class HomeScreen extends React.Component {
+class HomeScreen extends Component {
   state = {
-    employees: [
-      {
-        firstname: "",
-        lastname: "",
-      },
-    ],
+    employees: [],
   };
-  componentWillUnmount() {}
+
+  // componentWillUnmount() {}
   componentDidMount() {
-    EmployeeApi.getEmployees().then((res) => {
-      this.setState({ employees: res.data });
+    EmployeeApi.getEmployees().then((employees) => {
+      if (employees !== Error) this.setState({ employees });
     });
   }
 
-  // getEmployees(userId) {
-  //   fetch(`http://localhost:8082/employee/all`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ userId }),
-  //   })
-  //     .then((res) => {
-  //       return res.status === 200
-  //         ? res.employees.json()
-  //         : new Error("request failed");
-  //     })
-  //     .then((employees) => {
-  //       this.setState({ employees });
-  //     })
-  //     .catch(console.log);
-  // }
   renderEmployeeRows() {
     return this.state.employees.map((emp) => {
       return (
         <>
-          <tr key={emp.id.toString()}>
+          <tr key={emp.id}>
             <td data-th="First Name">{emp.firstName}</td>
             <td data-th="Last Name">{emp.lastName}</td>
             <td data-th="Email">{emp.email}</td>
@@ -50,10 +29,12 @@ class HomeScreen extends React.Component {
       );
     });
   }
+  // addEmployee() {
+  //   this.history.push("/addEmployeeScreen");
+  // }
   render() {
     return (
-      <>
-        hi
+      <div>
         <h1>Employee Screen</h1>
         <h1>RWD List to Table</h1>
         <table className="rwd-table">
@@ -72,18 +53,30 @@ class HomeScreen extends React.Component {
             </tr>
             {this.renderEmployeeRows()}
           </tbody>
-          <button
-            variant="primary"
-            type="button"
-            style={{ margin: "10px" }}
-            onClick={this.addEmployee}
-          >
-            Add Employee
-          </button>
         </table>
-      </>
+        <AddEmployee />
+      </div>
     );
   }
+}
+function AddEmployee(props) {
+  const history = useNavigate();
+  function handleAddEmployee() {
+    history("/addEmployee");
+  }
+
+  return (
+    <>
+      <button
+        variant="primary"
+        type="button"
+        style={{ margin: "10px" }}
+        onClick={handleAddEmployee}
+      >
+        Add Employee
+      </button>
+    </>
+  );
 }
 
 export default HomeScreen;

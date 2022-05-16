@@ -15,9 +15,14 @@ public class EmployeeDetailService {
 	EmployeeRepository employeeRepository;
 	
 	public ResponseEntity<EmployeeEntity> saveEmployee(EmployeeEntity employeeEntity) {
+		System.out.println("in save employee: \n"+employeeEntity);
 		if (employeeRepository.findByEmail(employeeEntity.getEmail()) == null){
+			System.out.println("no user exists with same email. attempting save: \n");
+
 			return new ResponseEntity<EmployeeEntity>(employeeRepository.save(employeeEntity), HttpStatus.OK);
 		}
+		System.out.println("user exists with same email. returning conflict\n");
+
 		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
 	
