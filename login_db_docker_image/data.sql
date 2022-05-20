@@ -2,7 +2,7 @@
 -- USE loginDB;
 -- DROP TABLE IF EXISTS employee;
 CREATE TABLE login (
-    id VARCHAR(36) not null,
+    id INT,
 	email Varchar(50) NOT NULL UNIQUE, 
     password Varchar(500) NOT NULL,
     PRIMARY KEY(id)

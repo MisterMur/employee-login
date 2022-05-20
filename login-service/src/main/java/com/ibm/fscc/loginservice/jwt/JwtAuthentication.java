@@ -26,7 +26,7 @@ public class JwtAuthentication {
 	
 	Date expiration = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24); //current time in milliseconds + milliseconds in a day
 	
-	public String createJWTToken(String userId) {
+	public String createJWTToken(long userId) {
 		
 		
 	try {
@@ -65,14 +65,14 @@ public class JwtAuthentication {
 				
 	}
 	
-	public String decodeJWTToken(String userId, String token) {
+	public String decodeJWTToken(long userId, String token) {
 		DecodedJWT jwt = JWT.decode(token);
 		
 	try {	
-		if (jwt.getClaim(userId) == null) {
+		if (jwt.getClaim(String.valueOf(userId)) == null) {
 			return "No id found";
 		} else {
-			return jwt.getClaim(userId).toString();
+			return jwt.getClaim(String.valueOf(userId)).toString();
 		}
 	} catch (JWTDecodeException err) {
 		err.printStackTrace();
@@ -81,7 +81,7 @@ public class JwtAuthentication {
 	
 	}
 	
-	public ResponseEntity<Object> loginValidation(String token, String userId) {
+	public ResponseEntity<Object> loginValidation(String token, long userId) {
 		if (isValidJWTToken(token)) {
 			HashMap<String, String> decodedTokens = new HashMap<String,String>();
 			String decodedToken = decodeJWTToken(userId, token);

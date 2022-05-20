@@ -28,10 +28,14 @@ class EmployeeApi {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(employee),
-    });
-    // .then((res) => {
-    //   res})
-    // return axios.post("http://localhost:8082/employee/add", employee);
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        return res;
+      })
+      .catch(console.log);
   }
 
   editEmployee(employee) {

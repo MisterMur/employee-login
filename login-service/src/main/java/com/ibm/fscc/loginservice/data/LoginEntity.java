@@ -17,16 +17,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="login")
 public class LoginEntity {
 
-	@Id @GeneratedValue(generator="UUID")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-	private String id;
-
+	// @Id @GeneratedValue(generator="UUID")
+    // @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+	
+	// private String id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
 	private String email;
 	private String password;
 	
 
-	public String getId() {
+	public long getId() {
 		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {

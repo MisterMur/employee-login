@@ -14,17 +14,17 @@ import org.hibernate.annotations.GenericGenerator;
 public class EmployeeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 
-	private String userId; // Generate with UUID and unique
-	private String firstName;
-	private String lastName;
+	private String user_id; // Generate with UUID and unique
+	private String first_name;
+	private String last_name;
 	private String address;
 	private String city;
 	private String state;
 	private String zip;
-	private String cellPhone;
-	private String homePhone;
+	private String cell_phone;
+	private String home_phone;
 	private String email; // Unique
 	
 	// public EmployeeEntity() {
@@ -41,36 +41,36 @@ public class EmployeeEntity {
 	
 	
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLast_name() {
+		return last_name;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
 	public String getAddress() {
@@ -105,20 +105,20 @@ public class EmployeeEntity {
 		this.zip = zip;
 	}
 
-	public String getCellPhone() {
-		return cellPhone;
+	public String getCell_phone() {
+		return cell_phone;
 	}
 
-	public void setCellPhone(String cellPhone) {
-		this.cellPhone = cellPhone;
+	public void setCell_phone(String cell_phone) {
+		this.cell_phone = cell_phone;
 	}
 
-	public String getHomePhone() {
-		return homePhone;
+	public String getHome_phone() {
+		return home_phone;
 	}
 
-	public void setHomePhone(String homePhone) {
-		this.homePhone = homePhone;
+	public void setHome_phone(String home_phone) {
+		this.home_phone = home_phone;
 	}
 
 	public String getEmail() {

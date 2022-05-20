@@ -56,6 +56,7 @@ public class EmployeeController {
 	
 	@RequestMapping(path = "/add", method= RequestMethod.POST, consumes= {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<EmployeeEntity> addEmployee(@RequestBody EmployeeEntity employeeEntity) {
+		// System.out.print("in controller add employee route - employeeENtity: "+employeeEntity);
 		return employeeDetailService.saveEmployee(employeeEntity);
 	}
 
