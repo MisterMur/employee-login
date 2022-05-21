@@ -1,10 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import React from "react";
 
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AddEmployeeScreen from "./screens/AddEmployeeScreen";
-
+import AuthenticatedRoute from "./api/AuthenticatedRoute";
 function App() {
   return (
     <div className="App">

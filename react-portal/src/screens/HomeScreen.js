@@ -46,7 +46,7 @@ class HomeScreen extends Component {
   // }
   render() {
     return (
-      <div>
+      <div className="tablecontainer">
         <h1>Employee Screen</h1>
         <h1>RWD List to Table</h1>
         <table className="rwd-table">
@@ -72,6 +72,7 @@ function AddEmployee(props) {
   return (
     <>
       <button
+        className="buttonaddemployee"
         variant="primary"
         type="button"
         style={{ margin: "10px" }}

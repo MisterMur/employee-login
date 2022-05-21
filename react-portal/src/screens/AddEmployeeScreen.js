@@ -1,5 +1,7 @@
 import { Component, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+
 // import {Dropdown} from 'react-bootstrap';
 
 import "./addEmployeeStyles.scss";
@@ -88,6 +90,23 @@ function EmployeeForm(props) {
       setEmployeeData({ ...employeeData, [e.target.name]: e.target.value });
     }
     checkValid();
+  };
+  const isInputsEmpty = () => {
+    if (
+      first_name === "" &&
+      last_name === "" &&
+      address === "" &&
+      state === "" &&
+      city === "" &&
+      zip === "" &&
+      cell_phone === "" &&
+      home_phone === "" &&
+      email === "" &&
+      user_id === ""
+    ) {
+      return false;
+    }
+    return true;
   };
 
   const isNumeric = (value) => {
@@ -348,7 +367,7 @@ function EmployeeForm(props) {
             className="buttonaddemployee button--primary full-width"
             onClick={handleAddEmployee}
             type="submit"
-            disabled={!checkValid()}
+            disabled={!checkValid() && !isInputsEmpty()}
           >
             Save
           </button>
