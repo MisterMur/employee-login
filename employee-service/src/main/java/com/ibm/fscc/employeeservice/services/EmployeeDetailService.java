@@ -17,7 +17,7 @@ public class EmployeeDetailService {
 	
 	public ResponseEntity<EmployeeEntity> saveEmployee(EmployeeEntity employeeEntity) {
 		System.out.println("in save employee id: \n"+String.valueOf(employeeEntity.getId()));
-		if (employeeRepository.findByEmail(employeeEntity.getEmail()) == null){
+		if (employeeEntity.getEmail()!=null && employeeRepository.findByEmail(employeeEntity.getEmail()) == null){
 			System.out.println("nouserexists with same email.attemptingsave: \n");
 
 			return new ResponseEntity<EmployeeEntity>(employeeRepository.save(employeeEntity), HttpStatus.OK);
