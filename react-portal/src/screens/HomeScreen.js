@@ -9,7 +9,6 @@ class HomeScreen extends Component {
     employees: [],
   };
 
-  // componentWillUnmount() {}
   componentDidMount() {
     EmployeeApi.getEmployees().then((employees) => {
       if (employees !== Error) this.setState({ employees });
@@ -41,14 +40,10 @@ class HomeScreen extends Component {
       );
     });
   }
-  // addEmployee() {
-  //   this.history.push("/addEmployeeScreen");
-  // }
+
   render() {
     return (
       <div className={`form-block-wrapper form-block-wrapper--is-homescreen`}>
-        {/* className={`form-block-wrapper form-block-wrapper--is-addemployee`} */}
-
         <div className="tablecontainer">
           <h1>Employee Screen</h1>
           <table className="rwd-table">

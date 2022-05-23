@@ -5,8 +5,7 @@ import React from "react";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AddEmployeeScreen from "./screens/AddEmployeeScreen";
-import Auth from "./api/Auth";
-import PrivateRoute from "./api/PrivateRoute";
+import ProtectedRoute from "./api/ProtectedRoute";
 
 function App() {
   return (
@@ -16,25 +15,25 @@ function App() {
         <Route
           path="/employees"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <HomeScreen />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/addEmployee"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <AddEmployeeScreen />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/employees/:empId/"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <AddEmployeeScreen />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
       </Routes>
