@@ -5,22 +5,37 @@ import React from "react";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AddEmployeeScreen from "./screens/AddEmployeeScreen";
-import AuthenticatedRoute from "./api/AuthenticatedRoute";
+import Auth from "./api/Auth";
+import PrivateRoute from "./api/PrivateRoute";
+
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route exact path="/" element={<LoginScreen />} />
-        <Route exact path="/employees" element={<HomeScreen />} />
-        {/* <AuthenticatedRoute path="/employees"  element={<HomeScreen  />} /> */}
-
-        <Route exact path="/addEmployee" element={<AddEmployeeScreen />} />
-        {/* <AuthenticatedRoute path="/addEmployee"  element={<AddEmployeeScreen  />} /> */}
-
         <Route
-          exact
+          path="/employees"
+          element={
+            <PrivateRoute>
+              <HomeScreen />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/addEmployee"
+          element={
+            <PrivateRoute>
+              <AddEmployeeScreen />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/employees/:empId/"
-          element={<AddEmployeeScreen />}
+          element={
+            <PrivateRoute>
+              <AddEmployeeScreen />
+            </PrivateRoute>
+          }
         />
       </Routes>
     </div>

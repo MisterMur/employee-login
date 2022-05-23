@@ -76,9 +76,10 @@ function LoginForm(props) {
     // } else {
     console.log("in handle login submit");
     Auth.removeToken();
-    Auth.login(loginData).then(() => {
-      history("/employees");
-    });
+    Auth.login(loginData, history);
+    // .then(() => {
+    //   history("/employees");
+    // });
     //   return true;
     // }
   };

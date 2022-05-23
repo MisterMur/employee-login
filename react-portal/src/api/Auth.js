@@ -7,7 +7,11 @@ class Auth {
   removeToken() {
     localStorage.clear();
   }
-  async login(loginData) {
+  logout(history) {
+    localStorage.clear();
+    history("/");
+  }
+  async login(loginData, history) {
     console.log(loginData);
     const res = await fetch("http://localhost:8081/login/submit-login", {
       method: "POST",
@@ -16,6 +20,7 @@ class Auth {
     }).then((res) => res);
     if (res.status === 202) {
       await res.text().then(this.setToken);
+      history("/employees");
     } else {
       alert("Login Error.");
     }
@@ -60,8 +65,8 @@ class Auth {
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem("jwt");
-    return !(user === null);
+    let user = localStorage.getItem("jwt");
+    return user;
   }
 }
 export default new Auth();
