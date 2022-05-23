@@ -30,6 +30,8 @@ services:
       - backend
     volumes:
       - login-DB:/var/lib/mysql
+    cap_add:
+      - SYS_NICE # CAP_SYS_NICE
 
   employee-db:
     container_name: postgres

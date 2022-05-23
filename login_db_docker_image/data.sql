@@ -7,6 +7,7 @@ CREATE TABLE login (
     password Varchar(500) NOT NULL,
     PRIMARY KEY(id)
 );
+    -- PRIMARY KEY(id)
 
-INSERT INTO login (id, email, password)
-VALUES (1,'hi@me.com','1234');
+INSERT INTO login (id,email, password)
+VALUES (1,'hi@me.com','$2a$05$KlT5ZeFLk6xALi98aJRIHuZ6DD2e6rJvuptlj3cgcZ6EsDt8kQyhO');

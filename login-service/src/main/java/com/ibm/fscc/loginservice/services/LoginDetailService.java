@@ -24,12 +24,26 @@ public class LoginDetailService {
  public ResponseEntity<String> logins( LoginEntity login) {
 		 
 		 LoginEntity dbUser = loginRepository.findByEmail(login.getEmail());
+		 System.out.println("In logins - login email param: "+login.getEmail());
+		 System.out.println("In logins - login password param: "+login.getPassword());
+		 System.out.println("In logins - dbUser email : "+dbUser.getEmail());
+		 System.out.println("In logins - dbUser password : "+dbUser.getPassword());
+		 System.out.println("In logins - dbUser id : "+dbUser.getId());
+
+		 System.out.println("BRCRYPT CHECK PASS: "+BCrypt.checkpw(login.getPassword(), dbUser.getPassword()));
+
+
 		 
 		 if (dbUser != null && dbUser.getEmail() != null && BCrypt.checkpw(login.getPassword(), dbUser.getPassword())) {
-			 
+			System.out.println("BCRYPT CHECK SUCCESFUL - dbUser id: "+dbUser.getId());
+
+
 			 	token = authenticate.createJWTToken(dbUser.getId());
+				 System.out.println("CREATING TOKEN : "+ token);
+
 				return new ResponseEntity<>(token, HttpStatus.ACCEPTED);
 		 }
+		 System.out.println("UNAUTHORIZED login");
 		 return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
 	}
 public LoginEntity registerUser( LoginEntity user) {
