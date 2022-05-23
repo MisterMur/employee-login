@@ -12,7 +12,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LoginScreen />} />
         <Route exact path="/employees" element={<HomeScreen />} />
+        {/* <AuthenticatedRoute path="/employees"  element={<HomeScreen  />} /> */}
+
         <Route exact path="/addEmployee" element={<AddEmployeeScreen />} />
+        {/* <AuthenticatedRoute path="/addEmployee"  element={<AddEmployeeScreen  />} /> */}
+
         <Route
           exact
           path="/employees/:empId/"

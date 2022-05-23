@@ -23,11 +23,25 @@ class Auth {
   async register(registerData) {
     console.log(registerData);
 
-    const res = await fetch("http://localhost:8081/login/create", {
+    const res = await fetch("http://localhost:8081/login/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: registerData,
       mode: "no-cors",
+    }).then((res) => res);
+    if (res.status === 202) {
+      await res.text().then(this.setToken);
+    } else {
+      alert("Login Error.");
+    }
+  }
+  async create(registerData) {
+    console.log(registerData);
+
+    const res = await fetch("http://localhost:8081/login/create", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: registerData,
     }).then((res) => res);
     if (res.status === 202) {
       await res.text().then(this.setToken);
