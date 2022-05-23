@@ -134,71 +134,75 @@ function LoginForm(props) {
       passwordRegister === ""
     );
   };
+  // <div className="form-group">
   return (
-    <form onSubmit={props.onSubmit}>
+    <form className="form-wrapper" onSubmit={props.onSubmit}>
       <div className="form-block__input-wrapper">
-        <div className="form-group form-group--login">
-          <Input
-            type="text"
-            id="email"
-            label="email"
-            name="email"
-            value={email}
-            onChange={onLoginTextChange}
-            disabled={props.mode === "signup"}
-          />
-          {emailValid(email) ? null : (
-            <>
-              <p style={{ color: "red" }}>Must be a valid Email</p>
-            </>
-          )}
-          <Input
-            type="password"
-            id="password"
-            label="password"
-            name="password"
-            value={password}
-            onChange={onLoginTextChange}
-            disabled={props.mode === "signup"}
-          />
-          {passwordValid(password) ? null : (
-            <>
-              <p style={{ color: "red" }}>
-                Password must be between 8 and 35 characters alphanumeric
-              </p>
-            </>
-          )}
-        </div>
-        <div className="form-group form-group--signup">
-          <Input
-            type="text"
-            id="fullname"
-            name="fullname"
-            label="full name"
-            value={fullname}
-            onChange={onRegisterTextChange}
-            disabled={props.mode === "login"}
-          />
-          <Input
-            type="text"
-            id="emailRegister"
-            name="emailRegister"
-            label="email"
-            value={emailRegister}
-            onChange={onRegisterTextChange}
-            disabled={props.mode === "login"}
-          />
-          <Input
-            type="password"
-            id="createpasswordRegister"
-            label="password"
-            name="passwordRegister"
-            value={passwordRegister}
-            onChange={onRegisterTextChange}
-            disabled={props.mode === "login"}
-          />
+        <div className="form-group">
+          <div className="form-group form-group--login">
+            <Input
+              type="text"
+              id="email"
+              label="email"
+              name="email"
+              value={email}
+              onChange={onLoginTextChange}
+              disabled={props.mode === "signup"}
+            />
+
+            <Input
+              type="password"
+              id="password"
+              label="password"
+              name="password"
+              value={password}
+              onChange={onLoginTextChange}
+              disabled={props.mode === "signup"}
+            />
+          </div>
+          <div className="form-group form-group--signup">
+            <Input
+              type="text"
+              id="fullname"
+              name="fullname"
+              label="full name"
+              value={fullname}
+              onChange={onRegisterTextChange}
+              disabled={props.mode === "login"}
+            />
+            <Input
+              type="text"
+              id="emailRegister"
+              name="emailRegister"
+              label="email"
+              value={emailRegister}
+              onChange={onRegisterTextChange}
+              disabled={props.mode === "login"}
+            />
+            <Input
+              type="password"
+              id="createpasswordRegister"
+              label="password"
+              name="passwordRegister"
+              value={passwordRegister}
+              onChange={onRegisterTextChange}
+              disabled={props.mode === "login"}
+            />
+          </div>
         </div>
       </div>
+      {emailValid(email) ? null : (
+        <>
+          <p style={{ color: "red" }}>Must be a valid Email</p>
+        </>
+      )}
+      {passwordValid(password) ? null : (
+        <>
+          <p style={{ color: "red" }}>
+            Password must be between 8 and 35 characters alphanumeric
+          </p>
+        </>
+      )}
       <button
         className="button button--primary full-width"
         disabled={isButtonDisabled()}
@@ -209,6 +213,8 @@ function LoginForm(props) {
       </button>
     </form>
   );
+
+  // {/* </div> */}
 }
 const Input = ({ id, type, label, value, onChange, disabled, name }) => (
   <input
