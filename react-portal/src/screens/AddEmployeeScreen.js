@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import React from "react";
+import state_list from "./inputData";
 
 // import {Dropdown} from 'react-bootstrap';
 
@@ -81,7 +82,8 @@ function EmployeeForm(props) {
       cityValid() &&
       zipValid() &&
       cellValid() &&
-      homeValid()
+      homeValid() &&
+      stateValid()
     );
   };
 
@@ -97,6 +99,7 @@ function EmployeeForm(props) {
       last_name === "" ||
       address === "" ||
       state === "" ||
+      state === "-- Select a State --" ||
       city === "" ||
       zip === "" ||
       cell_phone === "" ||
@@ -114,6 +117,14 @@ function EmployeeForm(props) {
     const re = /^\d+$/;
     if (!re.test(value.trim())) {
       return false;
+    }
+    return true;
+  };
+  const stateValid = () => {
+    if (state !== "" && state !== "-- Select a State --") {
+      if (state.length !== 2 && !/[^a-zA-Z()]/.test(state)) {
+        return false;
+      }
     }
     return true;
   };
@@ -182,10 +193,10 @@ function EmployeeForm(props) {
     }
     return true;
   };
-  const validateEmail = () => {
+  const emailValid = () => {
     // super long regex taken from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
     const re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (email !== "") {
       if (!re.test(email.trim())) {
         return false;
@@ -235,7 +246,7 @@ function EmployeeForm(props) {
             value={email}
             onChange={onTextChange}
           />
-          {validateEmail() ? null : (
+          {emailValid() ? null : (
             <>
               <p style={{ color: "red" }}>Must be a valid Email</p>
             </>
@@ -290,17 +301,9 @@ function EmployeeForm(props) {
               </p>
             </>
           )}
+          <StateDropdown onChange={onTextChange} value={state} />
           <input
-            className="form-groupinput"
-            type="text"
-            id="state"
-            placeholder="State"
-            name="state"
-            value={state}
-            onChange={onTextChange}
-          />
-          <input
-            className="form-groupinput"
+            className="statedropdown"
             type="text"
             id="city"
             placeholder="City"
@@ -382,5 +385,27 @@ function EmployeeForm(props) {
         </div>
       </div>
     </form>
+  );
+}
+
+function StateDropdown(props) {
+  return (
+    <>
+      <select
+        className="form-groupinput"
+        name="state"
+        onChange={props.onChange}
+      >
+        <option value={props.value || "-- Select a State --"}>
+          {props.value || "-- Select a State --"}
+        </option>
+
+        {state_list.map((s) => (
+          <option key={s} value={s}>
+            {s}
+          </option>
+        ))}
+      </select>
+    </>
   );
 }

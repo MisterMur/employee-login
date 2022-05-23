@@ -59,4 +59,5 @@ const state_list = [
   "WI",
   "WY",
 ];
-module.exports = { state_list };
+export default state_list;
+// module.exports = { state_list };

@@ -16,29 +16,31 @@ class HomeScreen extends Component {
   }
 
   renderEmployeeRows() {
-    return this.state.employees?.map((emp) => {
-      return (
-        <>
-          <tr key={emp.id}>
-            <td key={emp.id} data-th="Name">
-              {emp.first_name} {emp.last_name}
-            </td>
-            <td data-th="Email">
-              <Link
-                to={{
-                  pathname: `/employees/${emp.id}`,
-                  id: emp.id,
-                  emp: emp,
-                }}
-                state={{ employee: emp }}
-              >
-                {emp.email}
-              </Link>
-            </td>
-          </tr>
-        </>
-      );
-    });
+    return this.state.employees
+      ?.sort(function (a, b) {
+        return a.first_name + a.last_name < b.first_name + b.last_name ? 1 : -1;
+      })
+      .map((emp) => {
+        return (
+          <>
+            <tr key={emp.id}>
+              <td key={emp.id} data-th="Name">
+                <Link
+                  to={{
+                    pathname: `/employees/${emp.id}`,
+                    id: emp.id,
+                    emp: emp,
+                  }}
+                  state={{ employee: emp }}
+                >
+                  {emp.first_name} {emp.last_name}
+                </Link>
+              </td>
+              <td data-th="Email">{emp.email}</td>
+            </tr>
+          </>
+        );
+      });
   }
 
   render() {

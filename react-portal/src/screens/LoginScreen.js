@@ -67,6 +67,28 @@ function LoginForm(props) {
   const onRegisterTextChange = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
+  const emailValid = (emailstr) => {
+    // super long regex taken from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (emailstr !== "") {
+      if (!re.test(emailstr.trim())) {
+        return false;
+      }
+    }
+    return true;
+  };
+  const passwordValid = (passwordStr) => {
+    if (passwordStr !== "") {
+      if (
+        (passwordStr.length < 8 || passwordStr.length > 35) &&
+        !/[^a-zA-Z0-9()]/.test(passwordStr)
+      ) {
+        return false;
+      }
+    }
+    return true;
+  };
   const onLoginSubmit = (e) => {
     e.preventDefault();
     // const isValid = this.validateInputs();
@@ -95,6 +117,23 @@ function LoginForm(props) {
       this.props.history.push("/employees");
     });
   };
+  const isButtonDisabled = () => {
+    if (props.mode === "login") {
+      console.log(props.mode);
+      return (
+        !emailValid(email) ||
+        !passwordValid(password) ||
+        email === "" ||
+        password === ""
+      );
+    }
+    return (
+      !emailValid(emailRegister) ||
+      !passwordValid(passwordRegister) ||
+      emailRegister === "" ||
+      passwordRegister === ""
+    );
+  };
   return (
     <form onSubmit={props.onSubmit}>
       <div className="form-block__input-wrapper">
@@ -108,6 +147,11 @@ function LoginForm(props) {
             onChange={onLoginTextChange}
             disabled={props.mode === "signup"}
           />
+          {emailValid(email) ? null : (
+            <>
+              <p style={{ color: "red" }}>Must be a valid Email</p>
+            </>
+          )}
           <Input
             type="password"
             id="password"
@@ -117,6 +161,13 @@ function LoginForm(props) {
             onChange={onLoginTextChange}
             disabled={props.mode === "signup"}
           />
+          {passwordValid(password) ? null : (
+            <>
+              <p style={{ color: "red" }}>
+                Password must be between 8 and 35 characters alphanumeric
+              </p>
+            </>
+          )}
         </div>
         <div className="form-group form-group--signup">
           <Input
@@ -150,6 +201,7 @@ function LoginForm(props) {
       </div>
       <button
         className="button button--primary full-width"
+        disabled={isButtonDisabled()}
         onClick={props.mode === "login" ? onLoginSubmit : onSignupSubmit}
         type="submit"
       >
