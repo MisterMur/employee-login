@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import React from "react";
 
@@ -21,7 +21,7 @@ export default function AddEmployeeScreen() {
       ></div>
       <section className={`form-block form-block--is-addemployee`}>
         <header className="form-block__header">
-          <h1>Add New Employee</h1>
+          <h1>{mode === "add" ? "Add New Employee" : "Edit Employee"}</h1>
           <div className="form-block__toggle-block">
             <span>Enter all required fields to continue &#8594;</span>
           </div>
@@ -93,20 +93,21 @@ function EmployeeForm(props) {
   };
   const isInputsEmpty = () => {
     if (
-      first_name === "" &&
-      last_name === "" &&
-      address === "" &&
-      state === "" &&
-      city === "" &&
-      zip === "" &&
-      cell_phone === "" &&
-      home_phone === "" &&
-      email === "" &&
+      first_name === "" ||
+      last_name === "" ||
+      address === "" ||
+      state === "" ||
+      city === "" ||
+      zip === "" ||
+      cell_phone === "" ||
+      home_phone === "" ||
+      email === "" ||
       user_id === ""
     ) {
-      return false;
+      return true;
     }
-    return true;
+
+    return false;
   };
 
   const isNumeric = (value) => {
@@ -367,7 +368,7 @@ function EmployeeForm(props) {
             className="buttonaddemployee button--primary full-width"
             onClick={handleAddEmployee}
             type="submit"
-            disabled={!checkValid() && !isInputsEmpty()}
+            disabled={!checkValid() || isInputsEmpty()}
           >
             Save
           </button>

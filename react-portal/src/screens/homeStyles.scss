@@ -1,6 +1,8 @@
 $breakpoint-alpha: 480px;
 $borderRadius: 1px;
 $yellow: #ed6a5e;
+$background1: #433b7c;
+$background2: #2c497f;
 
 @mixin transition($transition...) {
   -moz-transition: $transition;
@@ -13,9 +15,20 @@ $yellow: #ed6a5e;
   box-shadow: $props;
 }
 
-.home-screen {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+// .home-screen {
+// }
+.form-block-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  @include transition(all 0.85s ease-in-out);
+
+  &--is-homescreen {
+    opacity: 0.94;
+    background-color: $background2;
+  }
 }
 
 .rwd-table {
@@ -74,8 +87,18 @@ $yellow: #ed6a5e;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10%;
   width: 60%;
   flex-direction: column;
+
+  // position: relative;
+  // margin: 30px auto 0;
+  // width: 80%;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.13);
+  border-radius: 2 * $borderRadius;
+  color: #fff;
+  @include box-shadow(0px 0px 16px 9px rgba(0, 0, 0, 0.07));
 }
 
 .buttonaddemployee {
@@ -104,7 +127,9 @@ $yellow: #ed6a5e;
 }
 
 .rwd-table {
-  background: #34495e;
+  // background: #34495e;
+  background: #5678c1;
+
   color: #fff;
   border-radius: 0.4em;
   overflow: hidden;
@@ -120,6 +145,6 @@ $yellow: #ed6a5e;
   }
   th,
   td:before {
-    color: #dd5;
+    color: $yellow;
   }
 }

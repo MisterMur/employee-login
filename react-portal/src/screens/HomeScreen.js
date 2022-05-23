@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import EmployeeApi from "../api/EmployeeApi";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ class HomeScreen extends Component {
       return (
         <>
           <tr key={emp.id}>
-            <td data-th="Name">
+            <td key={emp.id} data-th="Name">
               {emp.first_name} {emp.last_name}
             </td>
             <td data-th="Email">
@@ -46,19 +46,26 @@ class HomeScreen extends Component {
   // }
   render() {
     return (
-      <div className="tablecontainer">
-        <h1>Employee Screen</h1>
-        <h1>RWD List to Table</h1>
-        <table className="rwd-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderEmployeeRows()}</tbody>
-        </table>
-        <AddEmployee />
+      <div className={`form-block-wrapper form-block-wrapper--is-homescreen`}>
+        {/* className={`form-block-wrapper form-block-wrapper--is-addemployee`} */}
+
+        <div className="tablecontainer">
+          <h1>Employee Screen</h1>
+          <table className="rwd-table">
+            <thead>
+              <tr>
+                <th>
+                  <h3>Name</h3>
+                </th>
+                <th>
+                  <h3>Email</h3>
+                </th>
+              </tr>
+            </thead>
+            <tbody>{this.renderEmployeeRows()}</tbody>
+          </table>
+          <AddEmployee />
+        </div>
       </div>
     );
   }
@@ -72,8 +79,7 @@ function AddEmployee(props) {
   return (
     <>
       <button
-        className="buttonaddemployee"
-        variant="primary"
+        className="buttonaddemployee button--primary full-width"
         type="button"
         style={{ margin: "10px" }}
         onClick={handleAddEmployee}
