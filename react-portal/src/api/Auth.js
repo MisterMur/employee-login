@@ -12,7 +12,6 @@ class Auth {
     history("/");
   }
   async login(loginData) {
-    console.log(loginData);
     const res = await fetch("http://localhost:8081/login/submit-login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,8 +24,6 @@ class Auth {
     }
   }
   async register(registerData) {
-    console.log(registerData);
-
     const res = await fetch("http://localhost:8081/login/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,8 +37,6 @@ class Auth {
     }
   }
   async create(registerData) {
-    console.log(registerData);
-
     const res = await fetch("http://localhost:8081/login/create", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
