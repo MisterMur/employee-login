@@ -21,7 +21,7 @@ public class LoginDetailService {
 	
 	private String token = "";
 	
- public ResponseEntity<String> logins( LoginEntity login) {
+ public ResponseEntity<String> login( LoginEntity login) {
 		 
 		 LoginEntity dbUser = loginRepository.findByEmail(login.getEmail());
 		 System.out.println("In logins - login email param: "+login.getEmail());

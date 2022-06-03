@@ -28,6 +28,8 @@ services:
       context: "./login_db_docker_image"
     networks:
       - backend
+    ports:
+      - "3306:3306"
     volumes:
       - login-DB:/var/lib/mysql
     cap_add:

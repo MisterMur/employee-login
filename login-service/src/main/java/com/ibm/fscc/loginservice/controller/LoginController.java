@@ -38,7 +38,7 @@ public class LoginController {
 	
 	@RequestMapping(path="/submit-login", method = RequestMethod.POST, consumes= {MediaType.APPLICATION_JSON_VALUE})
 	public @ResponseBody ResponseEntity<String> login(@RequestBody LoginEntity login) {
-		 return loginDetailService.logins(login);
+		 return loginDetailService.login(login);
 	}
 	
 	@RequestMapping(path="/validate", method = RequestMethod.POST, consumes= {MediaType.APPLICATION_JSON_VALUE})

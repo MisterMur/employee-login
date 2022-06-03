@@ -1,6 +1,6 @@
 -- CREATE DATABASE IF NOT EXISTS loginDB ; 
 -- USE loginDB;
--- DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS login;
 CREATE TABLE login (
     id INT,
 	email Varchar(50) NOT NULL UNIQUE, 
@@ -10,4 +10,4 @@ CREATE TABLE login (
     -- PRIMARY KEY(id)
 
 INSERT INTO login (id,email, password)
-VALUES (1,'hi@me.com','$2a$12$7O.O9Giq9VPJmCI6bKAw0u7ATMgv2sHGAsh33XmBVmS9eLogxC/yC');
+VALUES (1,'hi@me.com','$2a$12$L7WijBjdtrkNjoBnAFbCLOl4w7ddV4jd0ClcGr74YBIY/glpFR5P6');
