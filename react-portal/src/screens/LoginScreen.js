@@ -91,24 +91,14 @@ function LoginForm(props) {
   };
   const onLoginSubmit = (e) => {
     e.preventDefault();
-    // const isValid = this.validateInputs();
 
-    // if (!isValid) {
-    //   return false;
-    // } else {
-    console.log("in handle login submit");
     Auth.removeToken();
-    Auth.login(loginData, history);
-    // .then(() => {
-    //   history("/employees");
-    // });
-    //   return true;
-    // }
+    Auth.login(loginData).then(() => {
+      history("/employees");
+    });
   };
   const onSignupSubmit = (e) => {
-    console.log(props.mode);
     e.preventDefault();
-    console.log("in registration submit");
     const registrationJson = {
       email: emailRegister,
       password: passwordRegister,
@@ -119,7 +109,6 @@ function LoginForm(props) {
   };
   const isButtonDisabled = () => {
     if (props.mode === "login") {
-      console.log(props.mode);
       return (
         !emailValid(email) ||
         !passwordValid(password) ||

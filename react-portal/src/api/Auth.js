@@ -11,7 +11,7 @@ class Auth {
     localStorage.clear();
     history("/");
   }
-  async login(loginData, history) {
+  async login(loginData) {
     console.log(loginData);
     const res = await fetch("http://localhost:8081/login/submit-login", {
       method: "POST",
@@ -20,7 +20,6 @@ class Auth {
     }).then((res) => res);
     if (res.status === 202) {
       await res.text().then(this.setToken);
-      history("/employees");
     } else {
       alert("Login Error.");
     }
