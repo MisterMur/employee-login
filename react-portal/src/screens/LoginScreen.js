@@ -93,9 +93,10 @@ function LoginForm(props) {
     e.preventDefault();
 
     Auth.removeToken();
-    Auth.login(loginData).then(() => {
-      history("/employees");
-    });
+    Auth.login(loginData, history);
+    // .then(() => {
+    //   history("/employees");
+    // });
   };
   const onSignupSubmit = (e) => {
     e.preventDefault();
@@ -123,7 +124,6 @@ function LoginForm(props) {
       passwordRegister === ""
     );
   };
-  // <div className="form-group">
   return (
     <form className="form-wrapper" onSubmit={props.onSubmit}>
       <div className="form-block__input-wrapper">
@@ -202,8 +202,6 @@ function LoginForm(props) {
       </button>
     </form>
   );
-
-  // {/* </div> */}
 }
 const Input = ({ id, type, label, value, onChange, disabled, name }) => (
   <input

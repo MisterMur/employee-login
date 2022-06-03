@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import EmployeeApi from "../api/EmployeeApi";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -22,9 +22,9 @@ class HomeScreen extends Component {
       })
       .map((emp) => {
         return (
-          <>
-            <tr key={emp.id}>
-              <td key={emp.id} data-th="Name">
+          <Fragment key={emp.id}>
+            <tr>
+              <td data-th="Name">
                 <Link
                   to={{
                     pathname: `/employees/${emp.id}`,
@@ -38,7 +38,7 @@ class HomeScreen extends Component {
               </td>
               <td data-th="Email">{emp.email}</td>
             </tr>
-          </>
+          </Fragment>
         );
       });
   }

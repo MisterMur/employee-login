@@ -9,6 +9,7 @@ import ProtectedRoute from "./api/ProtectedRoute";
 import Auth from "./api/Auth";
 
 import AuthContext from "./store/auth-context";
+import Header from "./screens/Header";
 
 function App() {
   const isLoggedIn = Auth.isUserLoggedIn();
@@ -22,6 +23,7 @@ function App() {
             path="/employees"
             element={
               <ProtectedRoute>
+                <Header />
                 <HomeScreen />
               </ProtectedRoute>
             }
@@ -30,6 +32,7 @@ function App() {
             path="/addEmployee"
             element={
               <ProtectedRoute>
+                <Header />
                 <AddEmployeeScreen />
               </ProtectedRoute>
             }
@@ -38,6 +41,7 @@ function App() {
             path="/employees/:empId/"
             element={
               <ProtectedRoute>
+                <Header />
                 <AddEmployeeScreen />
               </ProtectedRoute>
             }
