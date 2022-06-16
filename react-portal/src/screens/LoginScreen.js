@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Auth from "../api/Auth";
+import AuthContext from "../store/auth-context";
 import "./loginStyles.scss";
 
 class LoginComponent extends React.Component {
@@ -55,6 +56,7 @@ function LoginForm(props) {
     emailRegister: "",
     passwordRegister: "",
   });
+  const ctx = useContext(AuthContext);
 
   const history = useNavigate();
 
@@ -91,12 +93,7 @@ function LoginForm(props) {
   };
   const onLoginSubmit = (e) => {
     e.preventDefault();
-
-    Auth.removeToken();
-    Auth.login(loginData, history);
-    // .then(() => {
-    //   history("/employees");
-    // });
+    ctx.onLogin(loginData, history);
   };
   const onSignupSubmit = (e) => {
     e.preventDefault();

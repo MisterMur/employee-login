@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Auth from "../api/Auth";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../store/auth-context";
 
 function Header() {
   const history = useNavigate();
+  const ctx = useContext(AuthContext);
   const logoutHandler = () => {
-    console.log("in logout");
-    Auth.logout(history); //.then(() => history("/"));
+    ctx.onLogout(history);
   };
 
   return (

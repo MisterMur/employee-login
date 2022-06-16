@@ -120,5 +120,8 @@
         }
       }
     }},
-  "defaultProject": "angular-ui"
+  "defaultProject": "angular-ui",
+  "cli": {
+    "analytics": false
+  }
 }

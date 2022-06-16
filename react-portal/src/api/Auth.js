@@ -4,9 +4,7 @@ class Auth {
   setToken(token) {
     localStorage.setItem("jwt", token);
   }
-  removeToken() {
-    localStorage.clear();
-  }
+
   logout(history) {
     localStorage.clear();
     history("/");

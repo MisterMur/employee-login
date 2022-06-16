@@ -6,16 +6,12 @@ import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import AddEmployeeScreen from "./screens/AddEmployeeScreen";
 import ProtectedRoute from "./api/ProtectedRoute";
-import Auth from "./api/Auth";
 
-import AuthContext from "./store/auth-context";
 import Header from "./screens/Header";
 
 function App() {
-  const isLoggedIn = Auth.isUserLoggedIn();
-
   return (
-    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn }}>
+    <React.Fragment>
       <div className="App">
         <Routes>
           <Route exact path="/" element={<LoginScreen />} />
@@ -48,7 +44,7 @@ function App() {
           />
         </Routes>
       </div>
-    </AuthContext.Provider>
+    </React.Fragment>
   );
 }
 
