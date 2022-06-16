@@ -32,6 +32,8 @@ export class EmplistComponent implements OnInit {
       .getEmployeeData()
       .pipe(takeWhile(() => this.componentAlive))
       .subscribe((res) => (this.employees = res));
+    console.log('emplist employeeData: ', this.employeeData);
+    console.log('emplist employee array: ', this.employees);
   }
 
   updateData(id: any) {

@@ -10,6 +10,8 @@ import { AuthGuardService } from './service/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,24 +25,25 @@ const routes: Routes = [
     component: AddEmployeeComponent,
     //canActivate:[AuthGuardService]
   },
-
-  // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  // { path: 'employee', component: EditComponent, canActivate: [AuthGuard] },
-  // { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
+// { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+// { path: 'employee', component: EditComponent, canActivate: [AuthGuard] },
+// { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    EmplistComponent,
     AddEmployeeComponent,
     NavigationBarComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     HttpClientModule,
   ],
   exports: [RouterModule],
@@ -48,3 +51,4 @@ const routes: Routes = [
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+// RouterModule.forRoot(routes),

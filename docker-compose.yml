@@ -5,7 +5,19 @@ networks:
   frontend:
     driver: bridge
 services:
-  ##### USER INTERFACES ######
+  #####USERINTERFACES######
+  angular-portal:
+    container_name: angular-portal
+    build:
+      dockerfile: Dockerfile
+      context: "./angular-portal"
+    ports:
+      - "4200:4200"
+    networks:
+      - frontend
+    volumes:
+      - /app/node_modules
+      - ./angular-portal:/usr/src/app
   react-portal:
     container_name: react-portal
     stdin_open: true
@@ -22,19 +34,7 @@ services:
     networks:
       - frontend
 
-  angular-ui:
-    build:
-      dockerfile: Dockerfile
-      context: "./angular-ui"
-    ports:
-      - "4200:4200"
-    networks:
-      - frontend
-    volumes:
-      - /app/node_modules
-      - ./angular-ui:/app
-
-  ##### DATABASES ######
+  #####DATABASES######
   login-db:
     container_name: mysql
     build:
