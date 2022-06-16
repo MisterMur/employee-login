@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { EmplistComponent } from './emplist/emplist.component';
 import { AuthGuardService } from './service/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,6 +18,11 @@ const routes: Routes = [
     component: EmplistComponent,
     // canActivate: [AuthGuardService],
   },
+  {
+    path: 'addemployee',
+    component: AddEmployeeComponent,
+    //canActivate:[AuthGuardService]
+  },
 
   // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   // { path: 'employee', component: EditComponent, canActivate: [AuthGuard] },
@@ -23,7 +30,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    AddEmployeeComponent,
+    NavigationBarComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

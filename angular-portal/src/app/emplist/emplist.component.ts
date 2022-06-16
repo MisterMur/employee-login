@@ -4,13 +4,15 @@ import { EmployeeDataService } from '../service/employee-data.service';
 import { Employee } from '../model/Employee';
 import { InteractionService } from '../service/interaction.service';
 import { takeWhile } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 
 @Component({
   selector: 'app-emplist',
   templateUrl: './emplist.component.html',
-  styleUrls: ['./emplist.component.css'],
+  styleUrls: ['./emplist.component.scss'],
 })
-export class EmplistComponent implements OnInit, OnDestroy {
+export class EmplistComponent implements OnInit {
   name = '';
   componentAlive: boolean = true;
   employee: any;
@@ -19,6 +21,7 @@ export class EmplistComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private employeeData: EmployeeDataService,
     private _interactionService: InteractionService
   ) {}
@@ -34,6 +37,12 @@ export class EmplistComponent implements OnInit, OnDestroy {
   updateData(id: any) {
     this.employee = this.employees.find((x) => x.id === id);
     this.checkStatus();
+  }
+  handleAddEmployee() {
+    this.router.navigate(['addemployee']);
+  }
+  logoutHandler() {
+    this.router.navigate(['']);
   }
 
   checkStatus() {

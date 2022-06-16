@@ -1,0 +1,108 @@
+<div class="add-employee-screen">
+  <navigation-bar></navigation-bar>
+  <div class="form-block-wrapper form-block-wrapper--is-addemployee"></div>
+  <section class="form-block form-block--is-addemployee">
+    <header class="form-block__header">
+      <h1>{{ mode }} Employee</h1>
+      <div class="form-block__toggle-block">
+        <span>Enter all required fields to continue &#8594;</span>
+      </div>
+    </header>
+    <form>
+      <div class="form-block-addemployee">
+        <div class="form-group-addemployee">
+          <input
+            class="form-groupinput"
+            type="text"
+            id="user_id"
+            placeholder="User ID"
+            name="user_id"
+            [(ngModel)]="employee.user_id"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="email"
+            placeholder="Email"
+            name="email"
+            [(ngModel)]="employee.email"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="first_name"
+            placeholder="First Name"
+            name="first_name"
+            [(ngModel)]="employee.first_name"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="last_name"
+            placeholder="Last Name"
+            name="last_name"
+            [(ngModel)]="employee.last_name"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="address"
+            placeholder="Address"
+            name="address"
+            [(ngModel)]="employee.address"
+          />
+          <input
+            class="statedropdown"
+            type="text"
+            id="city"
+            placeholder="City"
+            name="city"
+            [(ngModel)]="employee.city"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="zip"
+            placeholder="Zipcode"
+            name="zip"
+            pattern="[0-9]*"
+            [(ngModel)]="employee.zip"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="home_phone"
+            placeholder="Home Phone"
+            name="home_phone"
+            pattern="[0-9]*"
+            [(ngModel)]="employee.home_phone"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
+            id="cell_phone"
+            placeholder="Cell Phone"
+            name="cell_phone"
+            pattern="[0-9]*"
+            [(ngModel)]="employee.cell_phone"
+          />
+          <div class="buttonwrapper">
+            <button
+              class="buttonaddemployee button--primary full-width"
+              (click)="handleAddEmployee()"
+              type="submit"
+            >
+              Save
+            </button>
+            <button
+              class="buttonaddemployee button--primary full-width"
+              (click)="handleCancel()"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,30 +1,106 @@
-<div className="login-screen">
-  <form className="form-wrapper" onSubmit="{props.onSubmit}">
-    <div className="form-block__input-wrapper">
-      <div className="form-group">
-        <div className="form-group form-group--login">
-          username:
+<div class="login-screen">
+  <!-- <navigation-bar></navigation-bar> -->
+
+  <div class="`form-block-wrapper form-block-wrapper--is-login">
+    <section class="form-block form-block--is-login">
+      <header class="form-block__header">
+        <h1>{{ mode }}</h1>
+        <div class="form-block__toggle-block">
+          <span> {{ mode }} have an account? Click here &#8594; </span>
           <input
-            className="form-group__input"
-            type="text"
-            name="username"
-            [(ngModel)]="username"
+            class="form-toggler"
+            [ngModel]="mode"
+            type="checkbox"
+            (change)="handleToggle()"
           />
-          password:
-          <input
-            className="form-group__input"
-            type="text"
-            name="password"
-            [(ngModel)]="password"
-          />
-          <button
-            className="button button--primary full-width"
-            (click)="handleLogin()"
-          >
-            Login
-          </button>
+          <label htmlFor="form-toggler"></label>
         </div>
-      </div>
-    </div>
-  </form>
+      </header>
+
+      <form
+        #loginForm="ngForm"
+        class="form-wrapper"
+        (ngSubmit)="handleLogin(loginForm)"
+      >
+        <div class="form-block__input-wrapper">
+          <div class="form-group">
+            <div class="form-group form-group--login">
+              <input
+                class="form-group__input"
+                type="text"
+                name="username"
+                placeholder="Username"
+                [(ngModel)]="username"
+              />
+              <input
+                class="form-group__input"
+                type="text"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="password"
+              />
+              <button class="button button--primary full-width">Login</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
 </div>
+
+<!-- <div class="wrapper fadeInDown">
+  <div id="formContent">
+   
+    <div class="fadeIn first">
+      <img
+        src="data:image/png;base64,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"
+        id="icon"
+        alt="Angular Icon"
+      />
+    </div>
+
+    <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm)">
+      <div *ngIf="invalidLogin" class="alert alert-danger">
+        Invalid Credentials
+      </div>
+      <div
+        *ngIf="_username.invalid && _username.dirty && _username.touched"
+        class="alert alert-danger"
+      ></div>
+      <div
+        *ngIf="_password.invalid && _password.dirty && _password.touched"
+        class="alert alert-danger"
+      ></div>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        minlength="8"
+        maxlength="35"
+        class="fadeIn second"
+        placeholder="Email"
+        [(ngModel)]="username"
+        #_username="ngModel"
+      />
+      <input
+        type="password"
+        id="password"
+        minlength="8"
+        maxlength="35"
+        class="fadeIn third"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        #_password="ngModel"
+      /><br />
+
+      <button
+        type="submit"
+        class="fadeIn fourth btn btn-md btn-danger"
+        [disabled]="!loginForm.form.valid"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div> -->

@@ -1,4 +1,48 @@
-<body>
+<div class="form-block-wrapper form-block-wrapper--is-homescreen">
+  <div class="app-header">
+    <button
+      (click)="logoutHandler()"
+      id="logout"
+      class="logout btn btn-primary btn-lg d-inline-block align-text-top"
+    >
+      Logout
+    </button>
+  </div>
+
+  <div class="tablecontainer">
+    <h1>Employee Screen</h1>
+    <table class="rwd-table">
+      <thead>
+        <tr>
+          <th>
+            <h3>Name</h3>
+          </th>
+          <th>
+            <h3>Email</h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td (click)="updateData(employee.id)">
+            <a href="#" data-toggle="modal" data-target="#newEmployee">{{
+              employee.first_name + " " + employee.last_name
+            }}</a>
+          </td>
+          <td>{{ employee.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button
+      class="buttonaddemployee button--primary full-width"
+      type="button"
+      (click)="handleAddEmployee()"
+    >
+      Add Employee
+    </button>
+  </div>
+</div>
+<!-- <body>
   <div class="row justify-content-center">
     <div class="center-table">
       <table
@@ -25,4 +69,4 @@
       </table>
     </div>
   </div>
-</body>
+</body> -->
