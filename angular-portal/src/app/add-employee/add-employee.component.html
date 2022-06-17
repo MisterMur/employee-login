@@ -8,16 +8,16 @@
         <span>Enter all required fields to continue &#8594;</span>
       </div>
     </header>
-    <form>
-      <div class="form-block-addemployee">
-        <div class="form-group-addemployee">
+    <div class="form-block-addemployee">
+      <div class="form-group-addemployee">
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
           <input
             class="form-groupinput"
             type="text"
             id="user_id"
             placeholder="User ID"
             name="user_id"
-            [(ngModel)]="employee.user_id"
+            formControlName="user_id"
           />
           <input
             class="form-groupinput"
@@ -25,7 +25,7 @@
             id="email"
             placeholder="Email"
             name="email"
-            [(ngModel)]="employee.email"
+            formControlName="email"
           />
           <input
             class="form-groupinput"
@@ -33,31 +33,40 @@
             id="first_name"
             placeholder="First Name"
             name="first_name"
-            [(ngModel)]="employee.first_name"
+            formControlName="first_name"
           />
+          <div *ngIf="!f['first_name']">
+            <div [hidden]="!f['first_name']">First Name is required</div>
+            <div [hidden]="!f['first_name']">Min Length is 10</div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
             id="last_name"
             placeholder="Last Name"
+            [ngClass]="{ 'is-invalid': submitted && f['last_name'] }"
             name="last_name"
-            [(ngModel)]="employee.last_name"
+            formControlName="last_name"
           />
+          <div *ngIf="!f['last_name']">
+            <div [hidden]="!f['last_name']">First Name is required</div>
+            <div [hidden]="!f['last_name']">Min Length is 10</div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
             id="address"
             placeholder="Address"
             name="address"
-            [(ngModel)]="employee.address"
+            formControlName="address"
           />
           <input
-            class="statedropdown"
+            class="form-groupinput"
             type="text"
             id="city"
             placeholder="City"
             name="city"
-            [(ngModel)]="employee.city"
+            formControlName="city"
           />
           <input
             class="form-groupinput"
@@ -66,7 +75,7 @@
             placeholder="Zipcode"
             name="zip"
             pattern="[0-9]*"
-            [(ngModel)]="employee.zip"
+            formControlName="zip"
           />
           <input
             class="form-groupinput"
@@ -75,7 +84,7 @@
             placeholder="Home Phone"
             name="home_phone"
             pattern="[0-9]*"
-            [(ngModel)]="employee.home_phone"
+            formControlName="home_phone"
           />
           <input
             class="form-groupinput"
@@ -84,25 +93,22 @@
             placeholder="Cell Phone"
             name="cell_phone"
             pattern="[0-9]*"
-            [(ngModel)]="employee.cell_phone"
+            formControlName="cell_phone"
           />
           <div class="buttonwrapper">
             <button
               class="buttonaddemployee button--primary full-width"
-              (click)="handleAddEmployee()"
-              type="submit"
+              (click)="onSubmit()"
             >
               Save
             </button>
-            <button
-              class="buttonaddemployee button--primary full-width"
-              (click)="handleCancel()"
-            >
+
+            <button class="buttonaddemployee button--primary full-width">
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
   </section>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeDataService } from '../service/employee-data.service';
-import { Employee } from '../model/Employee';
+import { Employee } from '../model/Employee.Model';
 import { InteractionService } from '../service/interaction.service';
 import { takeWhile } from 'rxjs/operators';
 import { Router } from '@angular/router';

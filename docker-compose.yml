@@ -17,7 +17,7 @@ services:
       - frontend
     volumes:
       - /app/node_modules
-      - ./angular-portal:/usr/src/app
+      - ./angular-portal:/app
   react-portal:
     container_name: react-portal
     stdin_open: true
