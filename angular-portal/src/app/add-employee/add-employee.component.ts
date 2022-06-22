@@ -20,18 +20,6 @@ import { takeWhile } from 'rxjs/operators';
   styleUrls: ['./add-employee.component.scss'],
 })
 export class AddEmployeeComponent implements OnInit {
-  // employeeForm = new FormGroup({
-  //   user_id: new FormControl(''),
-  //   email: new FormControl(''),
-  //   first_name: new FormControl(''),
-  //   last_name: new FormControl(''),
-  //   zip: new FormControl(''),
-  //   address: new FormControl(''),
-  //   state: new FormControl(''),
-  //   city: new FormControl(''),
-  //   home_phone: new FormControl(''),
-  //   cell_phone: new FormControl(''),
-  // });
   sub: any;
   employeeForm!: FormGroup;
   mode = 'Add';
@@ -74,11 +62,6 @@ export class AddEmployeeComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    this.sub = this.actRoute.params.subscribe((params) => {
-      // console.log(params);
-      // this.employee = params['get'];
-      // console.log('this employee: ', this.employee);
-    });
     this.actRoute.paramMap.subscribe((params) => {
       console.log(params);
       this.mode = params.get('mode') === 'Edit' ? 'Edit' : 'Add';
@@ -158,14 +141,9 @@ export class AddEmployeeComponent implements OnInit {
       console.log(this.mode);
       this.employeeData.addEmployeeData(this.employeeForm.value);
     }
+    this.router.navigate(['emplist']);
   }
   handleCancel() {
     this.router.navigate(['emplist']);
-  }
-  get f() {
-    return this.employeeForm.controls;
-  }
-  get firstname() {
-    return this.employeeForm.get('first_name');
   }
 }
