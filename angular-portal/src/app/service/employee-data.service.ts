@@ -14,11 +14,32 @@ export class EmployeeDataService {
     return this.http.get<Employee[]>(environment.retrieveEmpUrl);
   }
 
-  addEmployeeData(employee: any): Observable<any> {
-    return this.http.post(environment.addEmpUrl, employee);
-  }
+  async addEmployeeData(employee: any) {
+    console.log('in add employee data');
 
-  updateEmployeeData(employee: any): Observable<any> {
-    return this.http.put(environment.updateEmpUrl, employee);
+    const response = await fetch(environment.addEmpUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(employee),
+    });
+    return response.json();
   }
+  async updateEmployeeData(employee: any) {
+    console.log('in update employee data', employee);
+
+    const response = await fetch(environment.updateEmpUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(employee),
+    });
+    return response.json();
+  }
+  // updateEmployeeData(employee: any): Observable<any> {
+  //   console.log('in update employee data');
+
+  //   const response = await fetch(environment.updateEmpUrl, {
+  //     method: 'POST',
+  //     // mode: 'cors', // no-cors, *cors, same-origin
+  //   }
+  //   // return this.http.put(environment.updateEmpUrl, employee);
 }

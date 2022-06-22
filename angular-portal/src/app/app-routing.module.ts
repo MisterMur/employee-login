@@ -14,6 +14,8 @@ const routes: Routes = [
       import('./emplist/emplist.module').then((m) => m.EmplistModule),
     component: EmplistComponent,
   },
+  { path: 'employee/:id', component: AddEmployeeComponent },
+
   {
     path: 'addEmployee',
     component: AddEmployeeComponent,

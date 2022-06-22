@@ -24,10 +24,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let employee of employees">
-          <td (click)="updateData(employee.id)">
-            <a href="#" data-toggle="modal" data-target="#newEmployee">{{
-              employee.first_name + " " + employee.last_name
-            }}</a>
+          <td>
+            <a (click)="navigate(employee.id)">
+              {{ employee.first_name + " " + employee.last_name }}</a
+            >
           </td>
           <td>{{ employee.email }}</td>
         </tr>

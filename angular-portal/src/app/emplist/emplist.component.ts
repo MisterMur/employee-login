@@ -41,10 +41,18 @@ export class EmplistComponent implements OnInit {
     this.checkStatus();
   }
   handleAddEmployee() {
-    this.router.navigate(['addemployee']);
+    this.router.navigate(['addEmployee']);
   }
   logoutHandler() {
     this.router.navigate(['']);
+  }
+  navigate(id: any) {
+    this.employee = this.employees.find((x) => x.id === id);
+    console.log('emplist navigating to employee: ', this.employee);
+    this.router.navigate([
+      `/employee/${id}`,
+      { ...this.employee, mode: 'Edit' },
+    ]);
   }
 
   checkStatus() {

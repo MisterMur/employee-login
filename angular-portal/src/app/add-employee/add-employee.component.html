@@ -71,6 +71,14 @@
           <input
             class="form-groupinput"
             type="text"
+            id="state"
+            placeholder="State"
+            name="State"
+            formControlName="state"
+          />
+          <input
+            class="form-groupinput"
+            type="text"
             id="zip"
             placeholder="Zipcode"
             name="zip"
@@ -103,7 +111,10 @@
               Save
             </button>
 
-            <button class="buttonaddemployee button--primary full-width">
+            <button
+              (click)="handleCancel()"
+              class="buttonaddemployee button--primary full-width"
+            >
               Cancel
             </button>
           </div>
