@@ -138,7 +138,7 @@ $background2: #2c497f;
   }
   th,
   td {
-    margin: 0.5em 1em;
+    margin: 0.5em 0.5em;
     @media (min-width: $breakpoint-alpha) {
       padding: 1em !important;
     }
@@ -148,7 +148,10 @@ $background2: #2c497f;
     color: $yellow;
   }
 }
-
+h3 {
+  padding: 2px;
+  margin: 1px;
+}
 // logout button
 .app-header {
   background-color: black;

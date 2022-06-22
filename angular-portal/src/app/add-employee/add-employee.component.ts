@@ -136,14 +136,20 @@ export class AddEmployeeComponent implements OnInit {
     console.log('in handleaddemployee');
     console.log(this.employeeForm.value);
     if (this.mode === 'Edit') {
-      this.employeeData.updateEmployeeData(this.employeeForm.value);
+      this.employeeData
+        .updateEmployeeData(this.employeeForm.value)
+        .then(() => this.router.navigate(['emplist']));
     } else {
       console.log(this.mode);
-      this.employeeData.addEmployeeData(this.employeeForm.value);
+      this.employeeData
+        .addEmployeeData(this.employeeForm.value)
+        .then(() => this.router.navigate(['emplist']));
     }
-    this.router.navigate(['emplist']);
   }
   handleCancel() {
     this.router.navigate(['emplist']);
+  }
+  get f() {
+    return this.employeeForm.controls;
   }
 }

@@ -1,22 +1,22 @@
 .table {
-    border-style: solid;
-    border-width: 2px;
+  border-style: solid;
+  border-width: 2px;
 }
 
 td {
-    border-style: solid;
-    border-width: 2px;
-    background-color: white;
+  border-style: solid;
+  border-width: 2px;
+  background-color: white;
+}
+th {
+  margin-bottom: 1px;
 }
 
 .center-table {
-    padding: 50px;
+  padding: 50px;
 }
 
 body {
-    height: 200vh;
-    background-image: 
-    linear-gradient(
-        to top left, #ff0800, #111662
-    );
+  height: 200vh;
+  background-image: linear-gradient(to top left, #ff0800, #111662);
 }
