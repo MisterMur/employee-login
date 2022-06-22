@@ -19,7 +19,10 @@ export class EmployeeDataService {
 
     const response = await fetch(environment.addEmpUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
       body: JSON.stringify(employee),
     });
     return response.json();

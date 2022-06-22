@@ -156,6 +156,7 @@ export class AddEmployeeComponent implements OnInit {
       this.employeeData.updateEmployeeData(this.employeeForm.value);
     } else {
       console.log(this.mode);
+      this.employeeData.addEmployeeData(this.employeeForm.value);
     }
   }
   handleCancel() {
