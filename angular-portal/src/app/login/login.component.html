@@ -18,9 +18,9 @@
       </header>
 
       <form
-        #loginForm="ngForm"
+        [formGroup]="loginForm"
         class="form-wrapper"
-        (ngSubmit)="handleLogin(loginForm)"
+        (ngSubmit)="handleLogin()"
       >
         <div class="form-block__input-wrapper">
           <div class="form-group">
@@ -29,16 +29,46 @@
                 class="form-group__input"
                 type="text"
                 name="username"
+                formControlName="username"
                 placeholder="Username"
                 [(ngModel)]="username"
               />
+              <div
+                *ngIf="f['username'].touched && f['username'].invalid"
+                class="alert alert-danger"
+              >
+                <div *ngIf="f['username']['hasError']('required')">
+                  <p style="color: red">Username is required</p>
+                </div>
+                <div *ngIf="f['username'].errors?.['minlength']">
+                  <p style="color: red">Minimum 8 characters</p>
+                </div>
+                <div *ngIf="f['username'].errors?.['maxlength']">
+                  <p style="color: red">Maximum 35 characters</p>
+                </div>
+              </div>
               <input
                 class="form-group__input"
                 type="text"
                 placeholder="Password"
                 name="password"
+                formControlName="password"
                 [(ngModel)]="password"
               />
+              <div
+                *ngIf="f['password'].touched && f['password'].invalid"
+                class="alert alert-danger"
+              >
+                <div *ngIf="f['password']['hasError']('required')">
+                  <p style="color: red">Password is required</p>
+                </div>
+                <div *ngIf="f['password'].errors?.['minlength']">
+                  <p style="color: red">Minimum 8 characters</p>
+                </div>
+                <div *ngIf="f['password'].errors?.['maxlength']">
+                  <p style="color: red">Maximum 35 characters</p>
+                </div>
+              </div>
               <button class="button button--primary full-width">Login</button>
             </div>
           </div>

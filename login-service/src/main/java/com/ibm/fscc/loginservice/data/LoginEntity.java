@@ -17,10 +17,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="login")
 public class LoginEntity {
 
-	// @Id @GeneratedValue(generator="UUID")
-    // @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-	
-	// private String id;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

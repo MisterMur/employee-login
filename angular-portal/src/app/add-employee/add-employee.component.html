@@ -18,7 +18,24 @@
             placeholder="User ID"
             name="user_id"
             formControlName="user_id"
+            minlength="5"
+            maxlength="20"
           />
+          <div
+            *ngIf="f['user_id'].touched && f['user_id'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['user_id']['hasError']('required')">
+              <p style="color: red">User ID is required</p>
+            </div>
+
+            <div *ngIf="f['user_id'].errors?.['minlength']">
+              <p style="color: red">Minimum 5 characters</p>
+            </div>
+            <div *ngIf="f['user_id'].errors?.['maxlength']">
+              <p style="color: red">Maximum 20 characters</p>
+            </div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
@@ -26,7 +43,27 @@
             placeholder="Email"
             name="email"
             formControlName="email"
+            minlength="10"
+            maxlength="50"
           />
+          <div
+            *ngIf="f['email'].touched && f['email'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['email']['hasError']('required')">
+              <p style="color: red">Email is required</p>
+            </div>
+            <div *ngIf="f['email'].errors?.['email']">
+              <p style="color: red">Must be valid email</p>
+            </div>
+
+            <div *ngIf="f['email'].errors?.['minlength']">
+              <p style="color: red">Minimum 10 characters</p>
+            </div>
+            <div *ngIf="f['email'].errors?.['maxlength']">
+              <p style="color: red">Maximum 50 characters</p>
+            </div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
@@ -34,10 +71,26 @@
             placeholder="First Name"
             name="first_name"
             formControlName="first_name"
+            minlength="2"
+            maxlength="35"
           />
-          <div *ngIf="!f['first_name']">
-            <div [hidden]="!f['first_name']">First Name is required</div>
-            <div [hidden]="!f['first_name']">Min Length is 10</div>
+          <div
+            *ngIf="f['first_name'].touched && f['first_name'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['first_name']['hasError']('required')">
+              <p style="color: red">First Name is required</p>
+            </div>
+            <div *ngIf="f['first_name'].errors?.['pattern']">
+              <p style="color: red">Only Letters Allowed</p>
+            </div>
+
+            <div *ngIf="f['first_name'].errors?.['minlength']">
+              <p style="color: red">Minimum 2 characters</p>
+            </div>
+            <div *ngIf="f['first_name'].errors?.['maxlength']">
+              <p style="color: red">Maximum 35 characters</p>
+            </div>
           </div>
           <input
             class="form-groupinput"
@@ -47,11 +100,28 @@
             [ngClass]="{ 'is-invalid': submitted && f['last_name'] }"
             name="last_name"
             formControlName="last_name"
+            minlength="2"
+            maxlength="35"
           />
-          <div *ngIf="!f['last_name']">
-            <div [hidden]="!f['last_name']">First Name is required</div>
-            <div [hidden]="!f['last_name']">Min Length is 10</div>
+          <div
+            *ngIf="f['last_name'].touched && f['last_name'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['last_name']['hasError']('required')">
+              <p style="color: red">Last Name is required</p>
+            </div>
+            <div *ngIf="f['last_name'].errors?.['pattern']">
+              <p style="color: red">Only Letters Allowed</p>
+            </div>
+
+            <div *ngIf="f['last_name'].errors?.['minlength']">
+              <p style="color: red">Minimum 2 characters</p>
+            </div>
+            <div *ngIf="f['last_name'].errors?.['maxlength']">
+              <p style="color: red">Maximum 35 characters</p>
+            </div>
           </div>
+
           <input
             class="form-groupinput"
             type="text"
@@ -59,7 +129,23 @@
             placeholder="Address"
             name="address"
             formControlName="address"
+            minlength="10"
+            maxlength="50"
           />
+          <div
+            *ngIf="f['address'].touched && f['address'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['address']['hasError']('required')">
+              <p style="color: red">Address is required</p>
+            </div>
+            <div *ngIf="f['address']['hasError']('minlength')">
+              <p style="color: red">Minimum 10 characters</p>
+            </div>
+            <div *ngIf="f['address']['hasError']('maxlength')">
+              <p style="color: red">Maximum 50 characters</p>
+            </div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
@@ -67,15 +153,53 @@
             placeholder="City"
             name="city"
             formControlName="city"
+            minlength="5"
+            maxlength="50"
           />
+          <div
+            *ngIf="f['city'].touched && f['city'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['city']['hasError']('required')">
+              <p style="color: red">City is required</p>
+            </div>
+            <div *ngIf="f['city'].errors?.['minlength']">
+              <p style="color: red">Minimum 5 characters</p>
+            </div>
+            <div *ngIf="f['city'].errors?.['maxlength']">
+              <p style="color: red">Maximum 50 characters</p>
+            </div>
+          </div>
+
           <input
+            list="states"
             class="form-groupinput"
-            type="text"
-            id="state"
-            placeholder="State"
             name="State"
+            id="state"
+            required
             formControlName="state"
+            minlength="2"
+            maxlength="2"
+            pattern="[a-zA-Z]{2}"
           />
+          <datalist id="states">
+            <option *ngFor="let state of states" value="{{ state }}"></option>
+          </datalist>
+          <div
+            *ngIf="f['state'].touched && f['state'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['state']['hasError']('required')">
+              <p style="color: red">State is required</p>
+            </div>
+            <div *ngIf="f['state'].errors?.['minlength']">
+              <p style="color: red">Minimum 2 characters</p>
+            </div>
+            <div *ngIf="f['state'].errors?.['maxlength']">
+              <p style="color: red">Maximum 2 characters</p>
+            </div>
+          </div>
+
           <input
             class="form-groupinput"
             type="text"
@@ -84,7 +208,26 @@
             name="zip"
             pattern="[0-9]*"
             formControlName="zip"
+            minlength="5"
+            maxlength="9"
           />
+          <div
+            *ngIf="f['zip'].touched && f['zip'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['zip']['hasError']('required')">
+              <p style="color: red">Zipcode is required</p>
+            </div>
+            <div *ngIf="f['zip'].errors?.['pattern']">
+              <p style="color: red">Only Numbers Allowed</p>
+            </div>
+            <div *ngIf="f['zip'].errors?.['minlength']">
+              <p style="color: red">Minimum 5 characters</p>
+            </div>
+            <div *ngIf="f['zip'].errors?.['maxlength']">
+              <p style="color: red">Maximum 9 characters</p>
+            </div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
@@ -93,7 +236,26 @@
             name="home_phone"
             pattern="[0-9]*"
             formControlName="home_phone"
+            minlength="10"
+            maxlength="10"
           />
+          <div
+            *ngIf="f['home_phone'].touched && f['home_phone'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['home_phone']['hasError']('required')">
+              <p style="color: red">Home Phone is required</p>
+            </div>
+            <div *ngIf="f['home_phone'].errors?.['pattern']">
+              <p style="color: red">Only Numbers Allowed</p>
+            </div>
+            <div *ngIf="f['home_phone'].errors?.['minlength']">
+              <p style="color: red">Must include 10 characters</p>
+            </div>
+            <div *ngIf="f['home_phone'].errors?.['maxlength']">
+              <p style="color: red">Must include 10 characters</p>
+            </div>
+          </div>
           <input
             class="form-groupinput"
             type="text"
@@ -102,7 +264,26 @@
             name="cell_phone"
             pattern="[0-9]*"
             formControlName="cell_phone"
+            minlength="10"
+            maxlength="10"
           />
+          <div
+            *ngIf="f['cell_phone'].touched && f['cell_phone'].invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="f['cell_phone']['hasError']('required')">
+              <p style="color: red">Cell Phone is required</p>
+            </div>
+            <div *ngIf="f['cell_phone'].errors?.['pattern']">
+              <p style="color: red">Only Numbers Allowed</p>
+            </div>
+            <div *ngIf="f['cell_phone'].errors?.['minlength']">
+              <p style="color: red">Must include 10 characters</p>
+            </div>
+            <div *ngIf="f['cell_phone'].errors?.['maxlength']">
+              <p style="color: red">Must include 10 characters</p>
+            </div>
+          </div>
           <div class="buttonwrapper">
             <button
               class="buttonaddemployee button--primary full-width"

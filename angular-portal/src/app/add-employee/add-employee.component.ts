@@ -21,11 +21,65 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class AddEmployeeComponent implements OnInit {
   sub: any;
-  employeeForm!: FormGroup;
+  // employeeForm!: FormGroup;
+  employeeForm: FormGroup = new FormGroup({});
+
   mode = 'Add';
   submitted = false;
   employees: Employee[] = [];
   componentAlive: boolean = true;
+  states: string[] = [
+    'AL',
+    'AK',
+    'AZ',
+    'AR',
+    'CA',
+    'CO',
+    'CT',
+    'DE',
+    'FL',
+    'GA',
+    'HI',
+    'ID',
+    'IL',
+    'IN',
+    'IA',
+    'KS',
+    'KY',
+    'LA',
+    'ME',
+    'MD',
+    'MA',
+    'MI',
+    'MN',
+    'MS',
+    'MO',
+    'MT',
+    'NE',
+    'NV',
+    'NH',
+    'NJ',
+    'NM',
+    'NY',
+    'NC',
+    'ND',
+    'OH',
+    'OK',
+    'OR',
+    'PA',
+    'RI',
+    'SC',
+    'SD',
+    'TN',
+    'TX',
+    'UT',
+    'VT',
+    'VA',
+    'WA',
+    'WV',
+    'WI',
+    'WY',
+  ];
 
   employee = {
     id: '',
@@ -84,27 +138,64 @@ export class AddEmployeeComponent implements OnInit {
         user_id: new FormControl(this.employee.user_id, [Validators.required]),
         first_name: new FormControl(this.employee.first_name, [
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(2),
+          Validators.maxLength(35),
+          Validators.pattern('^[a-zA-Z]+$'),
         ]),
         last_name: new FormControl(this.employee.last_name, [
           Validators.required,
-          Validators.maxLength(15),
+          Validators.minLength(2),
+          Validators.maxLength(35),
           Validators.pattern('^[a-zA-Z]+$'),
         ]),
         email: new FormControl(this.employee.email, [
           Validators.email,
           Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(50),
         ]),
-        city: new FormControl(this.employee.city, [Validators.required]),
-        state: new FormControl(this.employee.state, [Validators.required]),
+        city: new FormControl(
+          this.employee.city,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(50),
+          ])
+        ),
+        state: new FormControl(this.employee.state, [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(2),
+        ]),
 
-        zip: new FormControl(this.employee.zip, [Validators.required]),
-        address: new FormControl(this.employee.address, [Validators.required]),
+        zip: new FormControl(
+          this.employee.zip,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern('^[0-9]*$'),
+            Validators.minLength(5),
+            Validators.maxLength(9),
+          ])
+        ),
+        address: new FormControl(
+          this.employee.address,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(50),
+          ])
+        ),
         cell_phone: new FormControl(this.employee.cell_phone, [
           Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('^[0-9]+$'),
         ]),
         home_phone: new FormControl(this.employee.home_phone, [
           Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('^[0-9]+$'),
         ]),
       });
     } else {
@@ -112,22 +203,72 @@ export class AddEmployeeComponent implements OnInit {
         user_id: new FormControl('', [Validators.required]),
         first_name: new FormControl('', [
           Validators.required,
-          Validators.minLength(10),
-        ]),
-        last_name: new FormControl('', [
-          Validators.required,
-          Validators.maxLength(15),
+          Validators.minLength(2),
+          Validators.maxLength(35),
           Validators.pattern('^[a-zA-Z]+$'),
         ]),
-        email: new FormControl('', [Validators.email, Validators.required]),
-        city: new FormControl('', [Validators.required]),
-        state: new FormControl('', [Validators.required]),
 
-        street: new FormControl('', [Validators.required]),
-        zip: new FormControl('', [Validators.required]),
-        address: new FormControl('', [Validators.required]),
-        cell_phone: new FormControl('', [Validators.required]),
-        home_phone: new FormControl('', [Validators.required]),
+        last_name: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(35),
+          Validators.pattern('^[a-zA-Z]+$'),
+        ]),
+        email: new FormControl(
+          '',
+          Validators.compose([
+            Validators.email,
+            Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(50),
+          ])
+        ),
+        city: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(50),
+          ])
+        ),
+        state: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(2),
+          ])
+        ),
+
+        zip: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern('^[0-9]*$'),
+            Validators.minLength(5),
+            Validators.maxLength(9),
+          ])
+        ),
+        address: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(50),
+          ])
+        ),
+        cell_phone: new FormControl('', [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('^[0-9]+$'),
+        ]),
+        home_phone: new FormControl('', [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('^[0-9]+$'),
+        ]),
       });
     }
   }
@@ -135,6 +276,9 @@ export class AddEmployeeComponent implements OnInit {
   onSubmit() {
     console.log('in handleaddemployee');
     console.log(this.employeeForm.value);
+    if (this.employeeForm.invalid) {
+      return;
+    }
     if (this.mode === 'Edit') {
       this.employeeData
         .updateEmployeeData(this.employeeForm.value)
@@ -145,6 +289,11 @@ export class AddEmployeeComponent implements OnInit {
         .addEmployeeData(this.employeeForm.value)
         .then(() => this.router.navigate(['emplist']));
     }
+  }
+  validateInput(field: any) {
+    this.employeeForm.patchValue({
+      [field]: this.employeeForm.controls[field].value,
+    });
   }
   handleCancel() {
     this.router.navigate(['emplist']);
