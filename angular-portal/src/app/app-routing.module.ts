@@ -13,17 +13,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./emplist/emplist.module').then((m) => m.EmplistModule),
     component: EmplistComponent,
+    canActivate: [AuthGuardService],
   },
-  { path: 'employee/:id', component: AddEmployeeComponent },
+  {
+    path: 'employee/:id',
+    component: AddEmployeeComponent,
+    canActivate: [AuthGuardService],
+  },
 
   {
     path: 'addEmployee',
     component: AddEmployeeComponent,
+    canActivate: [AuthGuardService],
   },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
-
-// {path: 'logout', component: LogoutComponent},
-// {path: '**', component: ErrorComponent}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), CommonModule],

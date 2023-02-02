@@ -32,8 +32,6 @@ export class EmplistComponent implements OnInit {
       .getEmployeeData()
       .pipe(takeWhile(() => this.componentAlive))
       .subscribe((res) => (this.employees = res));
-    console.log('emplist employeeData: ', this.employeeData);
-    console.log('emplist employee array: ', this.employees);
   }
 
   updateData(id: any) {
@@ -48,7 +46,6 @@ export class EmplistComponent implements OnInit {
   }
   navigate(id: any) {
     this.employee = this.employees.find((x) => x.id === id);
-    console.log('emplist navigating to employee: ', this.employee);
     this.router.navigate([
       `/employee/${id}`,
       { ...this.employee, mode: 'Edit' },

@@ -117,7 +117,6 @@ export class AddEmployeeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe((params) => {
-      console.log(params);
       this.mode = params.get('mode') === 'Edit' ? 'Edit' : 'Add';
       this.employee.id = params.get('id')!;
       this.employee.user_id = params.get('user_id')!;
@@ -130,8 +129,6 @@ export class AddEmployeeComponent implements OnInit {
       this.employee.state = params.get('state')!;
       this.employee.home_phone = params.get('home_phone')!;
       this.employee.cell_phone = params.get('cell_phone')!;
-
-      console.log(this.employee);
     });
     if (this.employee) {
       this.employeeForm = new FormGroup({
@@ -274,8 +271,6 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('in handleaddemployee');
-    console.log(this.employeeForm.value);
     if (this.employeeForm.invalid) {
       return;
     }
@@ -284,7 +279,6 @@ export class AddEmployeeComponent implements OnInit {
         .updateEmployeeData(this.employeeForm.value)
         .then(() => this.router.navigate(['emplist']));
     } else {
-      console.log(this.mode);
       this.employeeData
         .addEmployeeData(this.employeeForm.value)
         .then(() => this.router.navigate(['emplist']));

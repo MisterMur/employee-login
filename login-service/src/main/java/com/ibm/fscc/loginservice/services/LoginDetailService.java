@@ -24,10 +24,7 @@ public class LoginDetailService {
  public ResponseEntity<String> login( LoginEntity login) {
 		 
 		 LoginEntity dbUser = loginRepository.findByEmail(login.getEmail());
-		 System.out.println("In logins - login email param: "+login.getEmail());
-		 System.out.println("In logins - login password param: "+login.getPassword());
-		 System.out.println("In logins - dbUser email : "+dbUser.getEmail());
-		 System.out.println("In logins - dbUser password : "+dbUser.getPassword());
+		 
 		 System.out.println("In logins - dbUser id : "+dbUser.getId());
 
 		 System.out.println("BRCRYPT CHECK PASS: "+BCrypt.checkpw(login.getPassword(), dbUser.getPassword()));

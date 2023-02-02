@@ -37,12 +37,4 @@ export class EmployeeDataService {
     });
     return response.json();
   }
-  // updateEmployeeData(employee: any): Observable<any> {
-  //   console.log('in update employee data');
-
-  //   const response = await fetch(environment.updateEmpUrl, {
-  //     method: 'POST',
-  //     // mode: 'cors', // no-cors, *cors, same-origin
-  //   }
-  //   // return this.http.put(environment.updateEmpUrl, employee);
 }

@@ -8,7 +8,6 @@ import java.util.List;
 import com.ibm.fscc.loginservice.data.LoginEntity;
 
 @RestResource(path="logins",rel="logins")
-// @RepositoryRestResource(path="logins")
 public interface LoginRepository extends CrudRepository<LoginEntity, Long> {
     List<LoginEntity> findAll();
 	

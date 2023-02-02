@@ -27,7 +27,12 @@
 //   }
 // }
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import {
+  Router,
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 
 const auth = new AuthenticationService();
@@ -36,11 +41,14 @@ const auth = new AuthenticationService();
 export class AuthGuardService implements CanActivate {
   constructor(public router: Router) {}
 
-  canActivate(): boolean {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     AuthenticationService.validateJWTToken().then((res) => {
       const user_id = res.user_id;
       if (!user_id) {
-        this.router.navigate(['/']);
+        this.router.navigate(['']);
         return false;
       }
       return true;
