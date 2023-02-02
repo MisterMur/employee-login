@@ -65,18 +65,21 @@ public LoginEntity registerUser( LoginEntity user) {
  
  public LoginEntity newUser( LoginEntity user) {
 
-	 System.out.println("user.getEmail: "+ user.getEmail());
-	System.out.println("user.getPassword: "+ user.getPassword());
+	//  System.out.println("user.getEmail: "+ user.getEmail());
+	// System.out.println("user.getPassword: "+ user.getPassword());
 
-	System.out.println("findbyemail: "+loginRepository.findByEmail(user.getEmail() ));
-	 	
-	 	if (user.getEmail() != null && user.getPassword() != null && loginRepository.findByEmail(user.getEmail() )  != null) {
-			 System.out.println("user exists, salting password");
-	 		String hashpwd = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-	 		user.setPassword(hashpwd);
-	 		return loginRepository.save(user);
+	// System.out.println("findbyemail: "+loginRepository.findByEmail(user.getEmail() ));
+
+	 	if (user.getEmail() != null && user.getPassword() != null ) {
+			// System.out.println("newUser params exist");
+			if(loginRepository.findByEmail(user.getEmail() )  == null){
+				System.out.println("user doesnt exist - creating new user -  salting password");
+				String hashpwd = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+				user.setPassword(hashpwd);
+				return loginRepository.save(user);
+			}
 	 	}
-		 System.out.println("coulndt update new user, returning null");
+		 System.out.println("coulndt create new user, returning null");
 	 	return null;
  } 
 	

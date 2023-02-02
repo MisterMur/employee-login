@@ -96,12 +96,13 @@ function LoginForm(props) {
     ctx.onLogin(loginData, history);
   };
   const onSignupSubmit = (e) => {
+    console.log(`in signup`)
     e.preventDefault();
     const registrationJson = {
       email: emailRegister,
       password: passwordRegister,
     };
-    Auth.register(registrationJson).then(() => {
+    Auth.create(registrationJson).then(() => {
       this.props.history.push("/employees");
     });
   };

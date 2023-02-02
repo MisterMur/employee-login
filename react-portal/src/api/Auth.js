@@ -26,7 +26,7 @@ class Auth {
     const res = await fetch("http://localhost:8081/login/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: registerData,
+      body: JSON.stringify(registerData),
       mode: "no-cors",
     }).then((res) => res);
     if (res.status === 202) {
@@ -39,10 +39,11 @@ class Auth {
     const res = await fetch("http://localhost:8081/login/create", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: registerData,
+      body: JSON.stringify(registerData),
     }).then((res) => res);
-    if (res.status === 202) {
+    if (res.status === 202 || res.status ==200) {
       await res.text().then(this.setToken);
+      history("/employees");
     } else {
       alert("Login Error.");
     }
