@@ -10,7 +10,12 @@ Welcome to the IBM BR CIC Full Stack Coding Challenge.  The coding challenge is 
     * Install [Spring Tool Suite (STS)](https://spring.io/tools) for Java.
     * Install [Visual Studio Code](https://code.visualstudio.com/download)
 5. Create a [Docker Hub Account](https://hub.docker.com/) 
-6. Create an [IBM Cloud Account](https://cloud.ibm.com) 
+
+# Getting Started
+1. Clone this repo and 'cd' into it
+2. in terminal run - 'docker compose up'
+3. React portal should be accescible on localhost:3000
+4. angular portal shoudl be acccessibile on localhost:4200
 
 # Project Information
 
@@ -26,58 +31,17 @@ Welcome to the IBM BR CIC Full Stack Coding Challenge.  The coding challenge is 
 |react-ui                 |`React UI`                                           |
 
 
-# Deliverables
-The coding challenge should be completed in 4 to 6 weeks.  Code snippets are included in the projects to speed along your progress.  However, you must implement the missing code.
-
-## Week 1
-> #### Udemy Courses
-> - [Docker for the Absolute Beginners – Hands On – DevOps](https://ibm-learning.udemy.com/course/learn-docker/) - 3.5 hours
-> - [Microservices with Spring Cloud](https://ibm-learning.udemy.com/course/microservices-with-spring-cloud/) - 4.5 hours
-
-> #### Tasks
+# Deliverable
 > - Create MySQL Docker Images (Login and Employee Databases).
 > - Complete Login Service and Containerize.
 > - Complete Employee Service and Containerize.
 > - Create and Run in Docker Images.
 > - Test Docker Images (Postman and MySQL WorkBench).
-
-## Week 2
-> #### Udemy Courses
-> - [Microservices with Spring Cloud](https://ibm-learning.udemy.com/course/microservices-with-spring-cloud/) (continued)
-    
-> #### Tasks
 > - Implement Eureka Discovery Service and Containerize.
 > - Implement Zuul API Gateway Service and Containerize.
 > - Validate Eureka Discover Service identified:  Login, Employee, and API Gateway Services.
 > - Test Services via Zuul API Gateway.
-
-## Weeks 3 &amp; 4
-> #### Udemy Courses
-> - [Full Stack:  Angular and Spring Boot](https://ibm-learning.udemy.com/course/full-stack-application-development-with-spring-boot-and-angular/) - 12.5 hours
-> - [Go Java Full Stack with Spring Boot and React](https://ibm-learning.udemy.com/course/full-stack-application-with-spring-boot-and-react/) - 11.5 hours
-    
-> #### Tasks
 > - Implement and Containerize Angular UI. 
 > - Ensure screen requirements are implemented.
 > - Test Angular UI against service components.
 > - Repeat above steps for the React UI.
-
-
-## Weeks 5 &amp; 6 
-> ### DEMONSTRATIONS
-> - All application components must be running in  Docker Containers.
-> - Angular UI and React UI must be running in parallel.
->  ### NEXT:&nbsp;&nbsp;  `Stand up the coding challenge using Docker Compose.`
-
-
-# Sequence Diagrams
-
-## Login
-> #
-> ![Login Sequence Diagram](./fscc_sd1.png)
-> #
-
-## Add and Edit Employees
-> #
-> ![Add and Edit Employee Sequence Diagram](./fscc_sd2.png)
-> #
