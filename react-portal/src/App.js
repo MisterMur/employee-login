@@ -2,10 +2,11 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import React from "react";
 
-import LoginScreen from "./screens/LoginScreen";
-import HomeScreen from "./screens/HomeScreen";
-import AddEmployeeScreen from "./screens/AddEmployeeScreen";
-import ProtectedRoute from "./api/ProtectedRoute";
+import LoginScreen from './screens/LoginScreen';
+import HomeScreen from './screens/HomeScreen';
+import AddEmployeeScreen from './screens/AddEmployeeScreen';
+import {LoginRoute,ProtectedRoute} from './api/ProtectedRoute';
+import {isUserLoggedIn} from './api/Auth';
 
 import Header from "./screens/Header";
 
@@ -14,7 +15,11 @@ function App() {
     <React.Fragment>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<LoginScreen />} />
+          <Route exact path="/" element={
+            <LoginRoute>
+              <LoginScreen />
+            </LoginRoute>
+          } />
           <Route
             path="/employees"
             element={
@@ -34,7 +39,7 @@ function App() {
             }
           />
           <Route
-            path="/employees/:empId/"
+            path="/employees/:empId"
             element={
               <ProtectedRoute>
                 <Header />

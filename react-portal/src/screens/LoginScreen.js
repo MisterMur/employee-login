@@ -93,18 +93,15 @@ function LoginForm(props) {
   };
   const onLoginSubmit = (e) => {
     e.preventDefault();
-    ctx.onLogin(loginData, history);
+    ctx.onLogin({loginData, history});
   };
   const onSignupSubmit = (e) => {
-    console.log(`in signup`)
     e.preventDefault();
-    const registrationJson = {
+    const registerData = {
       email: emailRegister,
       password: passwordRegister,
     };
-    Auth.create(registrationJson).then(() => {
-      this.props.history.push("/employees");
-    });
+    ctx.onLogin({registerData, history});
   };
   const isButtonDisabled = () => {
     if (props.mode === "login") {
@@ -123,7 +120,7 @@ function LoginForm(props) {
     );
   };
   return (
-    <form className="form-wrapper" onSubmit={props.onSubmit}>
+    <form className="form-wrapper" onSubmit={props.mode === "login" ? onLoginSubmit : onSignupSubmit}>
       <div className="form-block__input-wrapper">
         <div className="form-group">
           <div className="form-group form-group--login">
