@@ -1,5 +1,5 @@
 # Full Stack Coding Challenge
-Welcome to the IBM BR CIC Full Stack Coding Challenge.  The coding challenge is designed to enhance the skills of IBM resources seeking to build a foundation as a full stack developer.  In this coding challenge, you will implement applications using leading technology stacks to build Single Page Applications (SPA).
+This coding challenge, implements applications using leading technology stacks to build Single Page Applications (SPA).
 
 
 # Before You Get Started
