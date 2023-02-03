@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 
 import Auth from "../api/Auth";
 
@@ -12,7 +11,6 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    console.log(`in authsuccess useeffect`);
     if (Auth.isUserLoggedIn()) {
       setIsLoggedIn(true);
 
@@ -28,9 +26,7 @@ export const AuthContextProvider = (props) => {
   };
   
   const loginHandler =  async ({loginData, history,registerData}) => {
-
     const result = registerData ? await Auth.create(registerData) : await Auth.login(loginData);
-    console.log(result);
 
     if(result){
       setIsLoggedIn(true);
