@@ -6,7 +6,7 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import AddEmployeeScreen from './screens/AddEmployeeScreen';
 import {LoginRoute,ProtectedRoute} from './api/ProtectedRoute';
-import {isUserLoggedIn} from './api/Auth';
+import NotFound from './screens/NotFound'
 
 import Header from "./screens/Header";
 
@@ -47,6 +47,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path='*' element={<NotFound />}/>
         </Routes>
       </div>
     </React.Fragment>
