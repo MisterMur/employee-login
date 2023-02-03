@@ -64,7 +64,7 @@ services:
 
   login-ws:
     container_name: login
-    command: mvn clean install -DskipTests
+    command: mvn package -DskipTests
     build:
       dockerfile: Dockerfile
       context: "./login-service"
@@ -79,7 +79,7 @@ services:
 
   employee-ws:
     container_name: employee
-    command: mvn clean install -DskipTests
+    command: mvn package -DskipTests
     build:
       dockerfile: Dockerfile
       context: "./employee-service"
