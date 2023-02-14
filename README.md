@@ -1,5 +1,5 @@
-# Full Stack Coding Challenge
-This coding challenge, implements applications using leading technology stacks to build Single Page Applications (SPA).
+# Employee Login 
+This multi-microserviced repo, implements applications using leading technology stacks to build Single Page Applications (SPA).
 
 
 # Before You Get Started
